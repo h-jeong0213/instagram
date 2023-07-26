@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <>
-      <h1>시작!</h1>
+      <h1>음..?</h1>
     </>
   )
 }
