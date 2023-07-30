@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 const SignUpPage = () => {
   return (
     <>
-      <div className="container">
+      <div>
         {/* <image className="logo"></image> */}
         <div>
           <h1>
@@ -17,3 +17,5 @@ const SignUpPage = () => {
 };
 
 export default SignUpPage;
+
+export const Container = styled.div``;

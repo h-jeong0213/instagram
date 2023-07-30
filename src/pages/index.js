@@ -1,3 +1,5 @@
+import styled from "@emotion/styled";
+
 export default function Home() {
   return (
     <>
@@ -6,3 +8,5 @@ export default function Home() {
     </>
   );
 }
+
+export const Container = styled.div``;
