@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
+import { useState } from "react";
 
 const ProfilPage = () => {
+  let [more, serMore] = useState(false);
   return (
     <>
       <Navbar>
@@ -41,21 +43,59 @@ const ProfilPage = () => {
           <NavText>프로필</NavText>
         </NavItem>
 
-        <NavItem>
+        <NavItem
+          onClick={() => {
+            more == true ? serMore(!true) : serMore(true);
+          }}
+        >
           <NavSvg className="navImgBox" src="list (1).svg"></NavSvg>
           <NavText>더 보기</NavText>
         </NavItem>
+        {more == true ? (
+          <MoreCard>
+            <MoreCardItem>로그아웃</MoreCardItem>
+          </MoreCard>
+        ) : null}
       </Navbar>
     </>
   );
+
+  function moreCard() {
+    return <></>;
+  }
 };
 
 export default ProfilPage;
+
+export const MoreCard = styled.div`
+  position: fixed;
+  bottom: 55px;
+  width: 266px;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 15px;
+  background-color: white;
+  border: 1px solid black;
+`;
+
+export const MoreCardItem = styled.div`
+  display: flex;
+  align-items: center;
+  height: 50px;
+  padding: 0px 10px;
+  border-radius: 10px;
+  transition: all 0.5s;
+  &:hover {
+    cursor: pointer;
+    background-color: #fde5ec;
+  }
+`;
 
 export const Navbar = styled.div`
   width: 233px;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   border-right: 1px solid black;
 `;
 
