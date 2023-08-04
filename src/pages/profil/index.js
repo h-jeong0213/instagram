@@ -4,7 +4,8 @@ import { useState } from "react";
 const ProfilPage = () => {
   let [more, serMore] = useState(false);
   return (
-    <>
+    <Container>
+      {/* Nav 구간 */}
       <Navbar>
         <LogoBox>
           <a>
@@ -39,7 +40,7 @@ const ProfilPage = () => {
           <NavText>만들기</NavText>
         </NavItem>
         <NavItem>
-          <ProfilBox className="navImgBox"></ProfilBox>
+          <MiniProfilImg className="navImgBox"></MiniProfilImg>
           <NavText>프로필</NavText>
         </NavItem>
 
@@ -57,15 +58,121 @@ const ProfilPage = () => {
           </MoreCard>
         ) : null}
       </Navbar>
-    </>
-  );
+      {/* Nav 끝 */}
+      <ProfilContainer>
+        <ProfilHeader>
+          <ProfilImgBox>
+            <ProfilImg></ProfilImg>
+          </ProfilImgBox>
 
-  function moreCard() {
-    return <></>;
-  }
+          <ProfilBox>
+            <ProfilMainBox>
+              <UserName>username</UserName>
+              <ProfilBtn>
+                <a>프로필 편집</a>
+              </ProfilBtn>
+              <ProfilBtn>
+                <a>보관된 스토리 보기</a>
+              </ProfilBtn>
+              <div>설정</div>
+            </ProfilMainBox>
+            <ProfilMainBox>
+              <div>게시물 00</div>
+              <div>팔로워 00</div>
+              <div>팔로우 00</div>
+            </ProfilMainBox>
+            <ProfilMainBox>
+              <div>usernickneme</div>
+            </ProfilMainBox>
+          </ProfilBox>
+        </ProfilHeader>
+      </ProfilContainer>
+    </Container>
+  );
 };
 
 export default ProfilPage;
+// 전체 Container
+
+export const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  overflow: hidden;
+`;
+
+// Profil main Content
+
+export const ProfilContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  /* justify-content: center; */
+`;
+
+export const ProfilHeader = styled.div`
+  display: flex;
+  width: 935px;
+  padding: 30px 20px 0;
+  /* border: 1px solid violet; */
+`;
+
+export const ProfilImgBox = styled.div`
+  width: 291px;
+  height: 150px;
+  margin-right: 30px;
+  display: flex;
+  justify-content: center;
+  /* border: 1px solid black; */
+`;
+
+export const ProfilImg = styled.img`
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  &:hover {
+    cursor: pointer;
+  }
+  border: 1px solid black;
+`;
+
+export const ProfilBox = styled.div`
+  height: 150px;
+  /* border: 1px solid blue; */
+`;
+
+export const ProfilMainBox = styled.div`
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  height: 40px;
+  gap: 15px;
+`;
+
+export const UserName = styled.h2`
+  font-size: 20px;
+  font-weight: normal;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const ProfilBtn = styled.div`
+  font-size: 14px;
+  font-weight: bold;
+  padding: 5px 13px;
+  border-radius: 8px;
+  background-color: #f3e8ff;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #fde5ec;
+  }
+`;
+
+// Nav style 시작
 
 export const MoreCard = styled.div`
   position: fixed;
@@ -92,6 +199,9 @@ export const MoreCardItem = styled.div`
 `;
 
 export const Navbar = styled.div`
+  /* position: absolute;
+  left: 0; */
+  background-color: white;
   width: 233px;
   height: 100vh;
   display: flex;
@@ -128,11 +238,6 @@ export const NavItem = styled.div`
     width: 26px;
     height: 26px;
   }
-
-  /* &:last-child {
-    position: absolute;
-    bottom: 0;
-  } */
 `;
 
 export const NavSvg = styled.img`
@@ -144,10 +249,12 @@ export const NavText = styled.p`
   font-size: 16px;
 `;
 
-export const ProfilBox = styled.div`
+export const MiniProfilImg = styled.div`
   border: 1px solid black;
   width: 24px;
   height: 24px;
   border-radius: 30px;
   background-color: blue;
 `;
+
+// Nav style 끝
