@@ -12,39 +12,46 @@ const ProfilPage = () => {
             <LogoImg src="../instagram.png"></LogoImg>
           </a>
         </LogoBox>
-        <NavItem>
-          <NavSvg className="navImgBox" src="house-heart-fill.svg"></NavSvg>
-          <NavText>홈</NavText>
-        </NavItem>
-        <NavItem>
-          <NavSvg className="navImgBox" src="search-heart-fill.svg"></NavSvg>
-          <NavText>검색</NavText>
-        </NavItem>
-        <NavItem>
-          <NavSvg className="navImgBox" src="compass.svg"></NavSvg>
-          <NavText>탐색</NavText>
-        </NavItem>
-        <NavItem>
-          <NavSvg
-            className="navImgBox"
-            src="chat-square-heart-fill.svg"
-          ></NavSvg>
-          <NavText>메세지</NavText>
-        </NavItem>
-        <NavItem>
-          <NavSvg className="navImgBox" src="heart (1).svg"></NavSvg>
-          <NavText>알림</NavText>
-        </NavItem>
-        <NavItem>
-          <NavSvg className="navImgBox" src="plus-square.svg"></NavSvg>
-          <NavText>만들기</NavText>
-        </NavItem>
-        <NavItem>
-          <MiniProfilImg className="navImgBox"></MiniProfilImg>
-          <NavText>프로필</NavText>
-        </NavItem>
-
+        <NavList>
+          <NavItem>
+            <NavSvg className="navImgBox" src="house-heart-fill.svg"></NavSvg>
+            <NavText>홈</NavText>
+          </NavItem>
+          <NavItem>
+            <NavSvg className="navImgBox" src="search-heart-fill.svg"></NavSvg>
+            <NavText>검색</NavText>
+          </NavItem>
+          <NavItem>
+            <NavSvg className="navImgBox" src="compass.svg"></NavSvg>
+            <NavText>탐색</NavText>
+          </NavItem>
+          <NavItem>
+            <NavSvg
+              className="navImgBox"
+              src="chat-square-heart-fill.svg"
+            ></NavSvg>
+            <NavText>메세지</NavText>
+          </NavItem>
+          <NavItem>
+            <NavSvg className="navImgBox" src="heart (1).svg"></NavSvg>
+            <NavText>알림</NavText>
+          </NavItem>
+          <NavItem>
+            <NavSvg className="navImgBox" src="plus-square.svg"></NavSvg>
+            <NavText>만들기</NavText>
+          </NavItem>
+          <NavItem>
+            <MiniProfilImg className="navImgBox"></MiniProfilImg>
+            <NavText>프로필</NavText>
+          </NavItem>
+          {more == true ? (
+            <MoreCard>
+              <MoreCardItem>로그아웃</MoreCardItem>
+            </MoreCard>
+          ) : null}
+        </NavList>
         <NavItem
+          className="moreBox"
           onClick={() => {
             more == true ? serMore(!true) : serMore(true);
           }}
@@ -52,11 +59,6 @@ const ProfilPage = () => {
           <NavSvg className="navImgBox" src="list (1).svg"></NavSvg>
           <NavText>더 보기</NavText>
         </NavItem>
-        {more == true ? (
-          <MoreCard>
-            <MoreCardItem>로그아웃</MoreCardItem>
-          </MoreCard>
-        ) : null}
       </Navbar>
       {/* Nav 끝 */}
       <ProfilContainer>
@@ -174,6 +176,12 @@ export const ProfilBtn = styled.div`
 
 // Nav style 시작
 
+export const NavList = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+`;
+
 export const MoreCard = styled.div`
   position: fixed;
   bottom: 55px;
@@ -199,14 +207,20 @@ export const MoreCardItem = styled.div`
 `;
 
 export const Navbar = styled.div`
-  /* position: absolute;
-  left: 0; */
   background-color: white;
   width: 233px;
   height: 100vh;
   display: flex;
+  position: relative;
   flex-direction: column;
   border-right: 1px solid black;
+
+  &:last-of-type {
+    justify-content: flex-end;
+  }
+  .moreBox {
+    /* justify-content: flex-end; */
+  }
 `;
 
 export const LogoBox = styled.div`
