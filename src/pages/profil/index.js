@@ -61,6 +61,7 @@ const ProfilPage = () => {
         </NavItem>
       </Navbar>
       {/* Nav 끝 */}
+
       <ProfilContainer>
         <ProfilHeader>
           <ProfilImgBox>
@@ -88,6 +89,13 @@ const ProfilPage = () => {
             </ProfilMainBox>
           </ProfilBox>
         </ProfilHeader>
+        <StoryHighlight>
+          <NewHighlight>
+            <NewHighlightBtn src="plus.svg"></NewHighlightBtn>
+            <NewHighlightTxt>신규</NewHighlightTxt>
+          </NewHighlight>
+        </StoryHighlight>
+        <ContentContiner></ContentContiner>
       </ProfilContainer>
     </Container>
   );
@@ -107,18 +115,19 @@ export const Container = styled.div`
 
 // Profil main Content
 
+// Prifil Header 시작
 export const ProfilContainer = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
-  /* justify-content: center; */
 `;
 
 export const ProfilHeader = styled.div`
   display: flex;
   width: 935px;
   padding: 30px 20px 0;
-  /* border: 1px solid violet; */
+  margin-bottom: 44px;
 `;
 
 export const ProfilImgBox = styled.div`
@@ -127,7 +136,6 @@ export const ProfilImgBox = styled.div`
   margin-right: 30px;
   display: flex;
   justify-content: center;
-  /* border: 1px solid black; */
 `;
 
 export const ProfilImg = styled.img`
@@ -142,12 +150,10 @@ export const ProfilImg = styled.img`
 
 export const ProfilBox = styled.div`
   height: 150px;
-  /* border: 1px solid blue; */
 `;
 
 export const ProfilMainBox = styled.div`
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   height: 40px;
   gap: 15px;
@@ -172,6 +178,51 @@ export const ProfilBtn = styled.div`
     cursor: pointer;
     background-color: #fde5ec;
   }
+`;
+
+// Profil Header 끝
+
+// Profil NewStory 시작
+
+export const StoryHighlight = styled.div`
+  width: 935px;
+  height: 130px;
+  margin-bottom: 44px;
+`;
+
+export const NewHighlight = styled.div`
+  width: 115px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const NewHighlightBtn = styled.img`
+  border: 1px solid;
+  width: 87px;
+  height: 87px;
+  border-radius: 50%;
+  background-color: #f3e8ff;
+`;
+
+export const NewHighlightTxt = styled.p`
+  font-size: 13px;
+  font-weight: bold;
+  margin: 10px 0;
+`;
+
+// Profil NewStory 끝
+
+// UserContent 시작
+export const ContentContiner = styled.div`
+  width: 935px;
+  height: 100%;
+  border-top: 1px solid black;
 `;
 
 // Nav style 시작
@@ -214,13 +265,6 @@ export const Navbar = styled.div`
   position: relative;
   flex-direction: column;
   border-right: 1px solid black;
-
-  &:last-of-type {
-    justify-content: flex-end;
-  }
-  .moreBox {
-    /* justify-content: flex-end; */
-  }
 `;
 
 export const LogoBox = styled.div`
