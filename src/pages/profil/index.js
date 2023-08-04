@@ -145,7 +145,7 @@ export const ProfilImg = styled.img`
   &:hover {
     cursor: pointer;
   }
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.25);
 `;
 
 export const ProfilBox = styled.div`
@@ -203,7 +203,7 @@ export const NewHighlight = styled.div`
 `;
 
 export const NewHighlightBtn = styled.img`
-  border: 1px solid;
+  border: 1px solid rgba(0, 0, 0, 0.2);
   width: 87px;
   height: 87px;
   border-radius: 50%;
@@ -222,7 +222,7 @@ export const NewHighlightTxt = styled.p`
 export const ContentContiner = styled.div`
   width: 935px;
   height: 100%;
-  border-top: 1px solid black;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 `;
 
 // Nav style 시작
@@ -264,7 +264,7 @@ export const Navbar = styled.div`
   display: flex;
   position: relative;
   flex-direction: column;
-  border-right: 1px solid black;
+  box-shadow: 0 0 0.7px currentColor;
 `;
 
 export const LogoBox = styled.div`
