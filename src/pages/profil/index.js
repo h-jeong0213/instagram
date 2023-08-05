@@ -3,6 +3,8 @@ import { useState } from "react";
 
 const ProfilPage = () => {
   let [more, serMore] = useState(false);
+  let [tabs, setTabs] = useState(2);
+
   return (
     <Container>
       {/* Nav 구간 */}
@@ -61,7 +63,8 @@ const ProfilPage = () => {
         </NavItem>
       </Navbar>
       {/* Nav 끝 */}
-
+      {/* Profil 시작 */}
+      {/* Profil 해더 */}
       <ProfilContainer>
         <ProfilHeader>
           <ProfilImgBox>
@@ -80,26 +83,75 @@ const ProfilPage = () => {
               <div>설정</div>
             </ProfilMainBox>
             <ProfilMainBox>
-              <div>게시물 00</div>
-              <div>팔로워 00</div>
-              <div>팔로우 00</div>
+              <ContentCount>게시물 00</ContentCount>
+              <UserFriends>팔로워 00</UserFriends>
+              <UserFriends>팔로우 00</UserFriends>
             </ProfilMainBox>
             <ProfilMainBox>
               <div>usernickneme</div>
             </ProfilMainBox>
           </ProfilBox>
         </ProfilHeader>
+        {/* Profil 해더 끝*/}
         <StoryHighlight>
           <NewHighlight>
             <NewHighlightBtn src="plus.svg"></NewHighlightBtn>
             <NewHighlightTxt>신규</NewHighlightTxt>
           </NewHighlight>
         </StoryHighlight>
-        <ContentContiner></ContentContiner>
+        <ContentContiner>
+          <ContentList defaultActiveKey="link0">
+            <ContentListItem
+              eventKey="link0"
+              onClick={() => {
+                setTabs(0);
+              }}
+            >
+              <ContentListItemImg src="heart (1).svg" />
+              게시물
+            </ContentListItem>
+            <ContentListItem
+              eventKey="link1"
+              onClick={() => {
+                setTabs(1);
+              }}
+            >
+              <ContentListItemImg src="heart (1).svg" />
+              릴스
+            </ContentListItem>
+            <ContentListItem
+              eventKey="link2"
+              onClick={() => {
+                setTabs(2);
+              }}
+            >
+              <ContentListItemImg src="heart (1).svg" />
+              저장 됨
+            </ContentListItem>
+            <ContentListItem
+              eventKey="link3"
+              onClick={() => {
+                setTabs(3);
+              }}
+            >
+              <ContentListItemImg src="heart (1).svg" />
+              태그 됨
+            </ContentListItem>
+          </ContentList>
+          <TabContent tabs={tabs} />
+        </ContentContiner>
       </ProfilContainer>
     </Container>
   );
 };
+function TabContent({ tabs }) {
+  return [
+    <UserContentInfo>게시물 내용</UserContentInfo>,
+    <UserContentInfo>릴스 내용</UserContentInfo>,
+    <UserContentInfo>저장 됨 내용</UserContentInfo>,
+    <UserContentInfo>태그 됨 내용</UserContentInfo>,
+  ][tabs];
+}
 
 export default ProfilPage;
 // 전체 Container
@@ -108,9 +160,6 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 100vh;
-  position: fixed;
-  overflow: hidden;
 `;
 
 // Profil main Content
@@ -142,6 +191,9 @@ export const ProfilImg = styled.img`
   width: 150px;
   height: 150px;
   border-radius: 50%;
+  background: url("stitch2.png");
+  background-position: center;
+  background-size: cover;
   &:hover {
     cursor: pointer;
   }
@@ -177,6 +229,14 @@ export const ProfilBtn = styled.div`
   &:hover {
     cursor: pointer;
     background-color: #fde5ec;
+  }
+`;
+
+export const ContentCount = styled.div``;
+
+export const UserFriends = styled.div`
+  &:hover {
+    cursor: pointer;
   }
 `;
 
@@ -225,6 +285,42 @@ export const ContentContiner = styled.div`
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 `;
 
+export const ContentList = styled.div`
+  width: 100%;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ContentListItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-right: 30px;
+  height: 100%;
+  font-size: 13px;
+  font-weight: bold;
+  color: gray;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:active {
+    border-top: 1px solid black;
+    color: black;
+  }
+`;
+export const ContentListItemImg = styled.img`
+  width: 13px;
+  height: 13px;
+`;
+export const UserContentInfo = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
 // Nav style 시작
 
 export const NavList = styled.div`
@@ -264,7 +360,7 @@ export const Navbar = styled.div`
   display: flex;
   position: relative;
   flex-direction: column;
-  box-shadow: 0 0 0.7px currentColor;
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
 `;
 
 export const LogoBox = styled.div`
@@ -308,11 +404,13 @@ export const NavText = styled.p`
 `;
 
 export const MiniProfilImg = styled.div`
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.2);
   width: 24px;
   height: 24px;
   border-radius: 30px;
-  background-color: blue;
+  background: url("stitch2.png");
+  background-position: center;
+  background-size: cover;
 `;
 
 // Nav style 끝
