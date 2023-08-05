@@ -2,8 +2,24 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 
 const ProfilPage = () => {
-  let [more, serMore] = useState(false);
+  let [more, setMore] = useState(false);
   let [tabs, setTabs] = useState(2);
+  let [activeTab, setActiveTab] = useState(0);
+  let [settingOn, setSettingon] = useState(false);
+  let tabMenu = [
+    { id: 0, title: "게시물" },
+    { id: 1, title: "릴스" },
+    { id: 2, title: "저장 됨" },
+    { id: 3, title: "태그 됨" },
+  ];
+  function TabContent({ tabs }) {
+    return [
+      <UserContentInfo>게시물 내용</UserContentInfo>,
+      <UserContentInfo>릴스 내용</UserContentInfo>,
+      <UserContentInfo>저장 됨 내용</UserContentInfo>,
+      <UserContentInfo>태그 됨 내용</UserContentInfo>,
+    ][tabs];
+  }
 
   return (
     <Container>
@@ -55,7 +71,7 @@ const ProfilPage = () => {
         <NavItem
           className="moreBox"
           onClick={() => {
-            more == true ? serMore(!true) : serMore(true);
+            more == true ? setMore(!true) : setMore(true);
           }}
         >
           <NavSvg className="navImgBox" src="list (1).svg"></NavSvg>
@@ -80,7 +96,11 @@ const ProfilPage = () => {
               <ProfilBtn>
                 <a>보관된 스토리 보기</a>
               </ProfilBtn>
-              <SettingBtn>
+              <SettingBtn
+                onClick={() => {
+                  setSettingon(true);
+                }}
+              >
                 <SettingImg src="gear-wide.svg" />
               </SettingBtn>
             </ProfilMainBox>
@@ -103,57 +123,41 @@ const ProfilPage = () => {
         </StoryHighlight>
         <ContentContiner>
           <ContentList defaultActiveKey="link0">
-            <ContentListItem
-              eventKey="link0"
-              onClick={() => {
-                setTabs(0);
-              }}
-            >
-              <ContentListItemImg src="heart (1).svg" />
-              게시물
-            </ContentListItem>
-            <ContentListItem
-              eventKey="link1"
-              onClick={() => {
-                setTabs(1);
-              }}
-            >
-              <ContentListItemImg src="heart (1).svg" />
-              릴스
-            </ContentListItem>
-            <ContentListItem
-              eventKey="link2"
-              onClick={() => {
-                setTabs(2);
-              }}
-            >
-              <ContentListItemImg src="heart (1).svg" />
-              저장 됨
-            </ContentListItem>
-            <ContentListItem
-              eventKey="link3"
-              onClick={() => {
-                setTabs(3);
-              }}
-            >
-              <ContentListItemImg src="heart (1).svg" />
-              태그 됨
-            </ContentListItem>
+            {tabMenu.map((tabMenu, i) => {
+              return (
+                <ContentListItem
+                  className={activeTab == i ? "active" : ""}
+                  onClick={() => {
+                    setTabs(i);
+                    setActiveTab(i);
+                  }}
+                >
+                  <ContentListItemImg src="heart (1).svg" />
+                  {tabMenu.title}
+                </ContentListItem>
+              );
+            })}
           </ContentList>
           <TabContent tabs={tabs} />
         </ContentContiner>
       </ProfilContainer>
+      {settingOn == true ? (
+        <SettingModal>
+          <SettingMenu>
+            <SettingMenuBtn>로그아웃</SettingMenuBtn>
+            <SettingMenuBtn
+              onClick={() => {
+                setSettingon(false);
+              }}
+            >
+              취소
+            </SettingMenuBtn>
+          </SettingMenu>
+        </SettingModal>
+      ) : null}
     </Container>
   );
 };
-function TabContent({ tabs }) {
-  return [
-    <UserContentInfo>게시물 내용</UserContentInfo>,
-    <UserContentInfo>릴스 내용</UserContentInfo>,
-    <UserContentInfo>저장 됨 내용</UserContentInfo>,
-    <UserContentInfo>태그 됨 내용</UserContentInfo>,
-  ][tabs];
-}
 
 export default ProfilPage;
 // 전체 Container
@@ -246,6 +250,36 @@ export const SettingImg = styled.img`
   height: 24px;
 `;
 
+export const SettingModal = styled.div`
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+`;
+
+export const SettingMenu = styled.div`
+  position: fixed;
+  left: 40%;
+  top: 50%;
+  width: 400px;
+  border-radius: 10px;
+  background-color: white;
+`;
+
+export const SettingMenuBtn = styled.div`
+  height: 50px;
+  padding: 8px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  &:hover {
+    cursor: pointer;
+    background-color: #fde5ec;
+  }
+`;
+
 export const ContentCount = styled.div``;
 
 export const UserFriends = styled.div`
@@ -321,7 +355,7 @@ export const ContentListItem = styled.div`
     cursor: pointer;
   }
 
-  &:active {
+  &.active {
     border-top: 1px solid black;
     color: black;
   }
@@ -345,7 +379,7 @@ export const NavList = styled.div`
 
 export const MoreCard = styled.div`
   position: fixed;
-  bottom: 55px;
+  bottom: 70px;
   width: 266px;
   margin: 10px;
   padding: 10px;
