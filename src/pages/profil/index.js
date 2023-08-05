@@ -80,7 +80,9 @@ const ProfilPage = () => {
               <ProfilBtn>
                 <a>보관된 스토리 보기</a>
               </ProfilBtn>
-              <div>설정</div>
+              <SettingBtn>
+                <SettingImg src="gear-wide.svg" />
+              </SettingBtn>
             </ProfilMainBox>
             <ProfilMainBox>
               <ContentCount>게시물 00</ContentCount>
@@ -230,6 +232,18 @@ export const ProfilBtn = styled.div`
     cursor: pointer;
     background-color: #fde5ec;
   }
+`;
+
+export const SettingBtn = styled.div`
+  padding: 10px;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const SettingImg = styled.img`
+  width: 24px;
+  height: 24px;
 `;
 
 export const ContentCount = styled.div``;
