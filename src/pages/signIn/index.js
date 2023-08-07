@@ -1,4 +1,3 @@
-import styled from '@emotion/styled'
 import {
   MainBox,
   LeftSection,
@@ -23,8 +22,9 @@ const SignInPage = () => {
     <>
       <MainBox>
         <LeftSection>
-          <PhoneImg alt="phone" src="../phon.png" />
-          <Screen src="../stitch2.png" alt="screem2" />
+          <Screen>
+            <PhoneImg />
+          </Screen>
         </LeftSection>
         <RightSection>
           <LoginPanel>

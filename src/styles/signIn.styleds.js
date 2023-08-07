@@ -14,17 +14,52 @@ export const LeftSection = styled.section`
   margin-left: auto;
   margin-right: 15px;
 `
-export const PhoneImg = styled.img`
-  height: 600px;
+export const PhoneImg = styled.div`
+  width: 253px;
+  height: 536px;
   position: relative;
-  margin: 20px;
+  margin: 16px;
+  border-radius: 33px;
+  transform: translateX(100px);
+  transform: translateY(15px);
+  background: no-repeat 50% 50% / cover;
+  animation: fade 15s infinite;
+  z-index: 1;
+
+  @keyframes fade {
+    0% {
+      background-image: url('../../ST.jpg');
+    }
+    17% {
+      background-image: url('../../ST.jpg');
+    }
+    34% {
+      background-image: url('../../mm.png');
+    }
+    51% {
+      background-image: url('../../mm.png');
+    }
+
+    68% {
+      background-image: url('../../ST.jpg');
+    }
+    85% {
+      background-image: url('../../ST.jpg');
+    }
+    100% {
+      background-image: url('../../ST.jpg');
+    }
+  }
 `
 
-export const Screen = styled.img`
-  width: 250px;
-  position: absolute;
-  left: 50px;
-  top: 85px;
+export const Screen = styled.div`
+  width: 278px;
+  height: 568px;
+  border-radius: 35px;
+  background-image: url('../iphon.png');
+  background-size: cover;
+  position: relative;
+  z-index: 2;
 `
 
 export const RightSection = styled.section`
