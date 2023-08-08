@@ -8,7 +8,7 @@ import {
   SignUpBtn,
   SignUpForm,
   SignUpTitle,
-} from "../../styles/signup.styles";
+} from '../../styles/signup.styles'
 
 const SignUpPage = () => {
   return (
@@ -40,14 +40,14 @@ const SignUpPage = () => {
       </Container>
       <Container>
         <p>
-          계정이 있으신가요?{" "}
-          <a href="#" style={{ textDecoration: "none" }}>
+          계정이 있으신가요?{' '}
+          <a href="#" style={{ textDecoration: 'none' }}>
             로그인
           </a>
         </p>
       </Container>
     </BigContainer>
-  );
-};
+  )
+}
 
-export default SignUpPage;
+export default SignUpPage
