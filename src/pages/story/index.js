@@ -43,10 +43,10 @@ const StoryPage = () => {
               <NickName>이름1</NickName>
             </Stories>
           </StoryPeed>
-          <Posts className="posts">
-            <PostTitle className="posttitle">
-              <PostLeft className="post-left">
-                <ImgWrap className="image">
+          <Posts>
+            <PostTitle>
+              <PostLeft>
+                <ImgWrap>
                   <PeedIMG
                     src="../stitch2.png"
                     width={50}
@@ -54,15 +54,15 @@ const StoryPage = () => {
                     alt="fff"
                   ></PeedIMG>
                 </ImgWrap>
-                <div className="details">
-                  <UserNickName className="name">nickname</UserNickName>
+                <div>
+                  <UserNickName>nickname</UserNickName>
                 </div>
               </PostLeft>
-              <div className="post-right">
+              <div>
                 <i>...</i>
               </div>
             </PostTitle>
-            <div className="post-content">
+            <div>
               <ContentIMG src="../ST.jpg" width={600} height={600}></ContentIMG>
             </div>
             <ButtonWrap>
