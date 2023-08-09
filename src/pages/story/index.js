@@ -43,39 +43,33 @@ const StoryPage = () => {
               <NickName>이름1</NickName>
             </Stories>
           </StoryPeed>
-          <Posts>
-            <PostTitle>
-              <PostLeft>
+          <Card>
+            <CardTitle>
+              <CardLeft>
                 <ImgWrap>
-                  <PeedIMG
-                    src="../stitch2.png"
-                    width={50}
-                    height={50}
-                    alt="fff"
-                  ></PeedIMG>
+                  <PeedIMG></PeedIMG>
                 </ImgWrap>
                 <div>
                   <UserNickName>nickname</UserNickName>
                 </div>
-              </PostLeft>
-              <div>
-                <i>...</i>
-              </div>
-            </PostTitle>
+              </CardLeft>
+
+              <IpBtn>...</IpBtn>
+            </CardTitle>
             <div>
               <ContentIMG src="../ST.jpg" width={600} height={600}></ContentIMG>
             </div>
             <ButtonWrap>
               <MiddleButtonWrap>
                 <MiddleButton src="heart (1).svg"></MiddleButton>
-                <MiddleButton></MiddleButton>
+                <MiddleButton src="../balloon.svg"></MiddleButton>
                 <MiddleButton src="chat-square-heart-fill.svg"></MiddleButton>
               </MiddleButtonWrap>
-              <SaveButton>저장</SaveButton>
+              <SaveButton src="../save.svg"></SaveButton>
             </ButtonWrap>
             <TextWrap>
               <NiceNumberWrap>
-                <MiddlePickture>이미지</MiddlePickture>
+                <MiddlePickture></MiddlePickture>
                 <MiddleText>ooo님 외 00명이 좋아합니다</MiddleText>
               </NiceNumberWrap>
               <ReviewWrap>
@@ -89,7 +83,7 @@ const StoryPage = () => {
                 <HeartButton src="heart (1).svg"></HeartButton>
               </ReviewWrap>
             </TextWrap>
-          </Posts>
+          </Card>
         </LeftSection>
         <section></section>
       </SectionWrap>
@@ -231,6 +225,12 @@ export const StoryPeed = styled.div`
   }
 `
 
+export const IpBtn = styled.p`
+  font-weight: bold;
+  font-size: 20px;
+  width: 30px;
+`
+
 export const Stories = styled.div`
   width: 8%;
 `
@@ -262,7 +262,7 @@ export const NickName = styled.p`
   text-align: center;
 `
 
-export const Posts = styled.div`
+export const Card = styled.div`
   margin: 20px 100px;
   width: 60%;
   background-color: white;
@@ -270,15 +270,15 @@ export const Posts = styled.div`
   border-radius: 5px;
 `
 
-export const PostTitle = styled.div`
+export const CardTitle = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 5px 10px;
   border-bottom: 1px solid gray;
 `
 
-export const PostLeft = styled.div`
+export const CardLeft = styled.div`
   display: flex;
   align-items: center;
 `
@@ -288,8 +288,14 @@ export const ImgWrap = styled.div`
 `
 
 export const PeedIMG = styled.img`
+  width: 40px;
+  height: 40px;
+  display: flex;
   border-radius: 50%;
-  object-fit: contain;
+  background: url('../stitch2.png');
+  background-position: center;
+  background-size: cover;
+  border: 3px solid pink;
 `
 
 export const UserNickName = styled.p`
@@ -385,11 +391,10 @@ export const MiddleButton = styled.img`
   overflow: hidden;
 `
 
-export const SaveButton = styled.div`
+export const SaveButton = styled.img`
   margin-right: 5px;
-  border: 1px solid gray;
-  width: 40px;
-  height: 100%;
+  width: 30px;
+  height: 25px;
   box-sizing: border-box;
   display: inline-block;
   text-align: center;
@@ -407,23 +412,25 @@ export const HeartButton = styled.img`
 `
 
 export const MiddlePickture = styled.div`
-  display: block;
-  background-color: greenyellow;
-  position: relative;
-  width: 38px;
-  height: 38px;
-  object-fit: cover;
-  clip-path: circle(42%);
-
-  overflow: hidden;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  border-radius: 50%;
+  background: url('../stitch2.png');
+  background-position: center;
+  background-size: cover;
+  border: 3px solid pink;
 `
 export const MiddleText = styled.p`
   position: inherit;
   width: 85%;
   height: 100%;
-  margin: 10px;
+  //  margin: 10px;
   font-size: 18px;
   font-weight: 500;
+  border: 1px solid black;
+  margin-top: 30px;
+  margin-left: 10px;
 `
 export const MyNickName2 = styled.p`
   margin-left: 10px;
