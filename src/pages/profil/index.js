@@ -1,27 +1,27 @@
-import styled from '@emotion/styled'
-import { useState } from 'react'
-import NavMenu from '../../components/nav'
+import styled from "@emotion/styled";
+import { useState } from "react";
+import NavMenu from "../../components/nav";
 
 const ProfilPage = () => {
   {
     /* let [more, setMore] = useState(false) */
   }
-  let [tabs, setTabs] = useState(2)
-  let [activeTab, setActiveTab] = useState(0)
-  let [settingOn, setSettingon] = useState(false)
+  let [tabs, setTabs] = useState(2);
+  let [activeTab, setActiveTab] = useState(0);
+  let [settingOn, setSettingon] = useState(false);
   let tabMenu = [
-    { id: 0, title: '게시물' },
-    { id: 1, title: '릴스' },
-    { id: 2, title: '저장 됨' },
-    { id: 3, title: '태그 됨' },
-  ]
+    { id: 0, title: "게시물" },
+    { id: 1, title: "릴스" },
+    { id: 2, title: "저장 됨" },
+    { id: 3, title: "태그 됨" },
+  ];
   function TabContent({ tabs }) {
     return [
       <UserContentInfo>게시물 내용</UserContentInfo>,
       <UserContentInfo>릴스 내용</UserContentInfo>,
       <UserContentInfo>저장 됨 내용</UserContentInfo>,
       <UserContentInfo>태그 됨 내용</UserContentInfo>,
-    ][tabs]
+    ][tabs];
   }
 
   return (
@@ -46,13 +46,15 @@ const ProfilPage = () => {
               <ProfilBtn>
                 <a>보관된 스토리 보기</a>
               </ProfilBtn>
+              {/* 모달 버튼 */}
               <SettingBtn
                 onClick={() => {
-                  setSettingon(true)
+                  setSettingon(true);
                 }}
               >
                 <SettingImg src="gear-wide.svg" />
               </SettingBtn>
+              {/* 모달 버튼 */}
             </ProfilMainBox>
             <ProfilMainBox>
               <ContentCount>게시물 00</ContentCount>
@@ -76,28 +78,29 @@ const ProfilPage = () => {
             {tabMenu.map((tabMenu, i) => {
               return (
                 <ContentListItem
-                  className={activeTab == i ? 'active' : ''}
+                  className={activeTab == i ? "active" : ""}
                   onClick={() => {
-                    setTabs(i)
-                    setActiveTab(i)
+                    setTabs(i);
+                    setActiveTab(i);
                   }}
                 >
                   <ContentListItemImg src="heart (1).svg" />
                   {tabMenu.title}
                 </ContentListItem>
-              )
+              );
             })}
           </ContentList>
           <TabContent tabs={tabs} />
         </ContentContiner>
       </ProfilContainer>
+      {/* 모달 창 */}
       {settingOn == true ? (
         <SettingModal>
           <SettingMenu>
             <SettingMenuBtn>로그아웃</SettingMenuBtn>
             <SettingMenuBtn
               onClick={() => {
-                setSettingon(false)
+                setSettingon(false);
               }}
             >
               취소
@@ -105,18 +108,19 @@ const ProfilPage = () => {
           </SettingMenu>
         </SettingModal>
       ) : null}
+      {/* 모달 창 끝 */}
     </Container>
-  )
-}
+  );
+};
 
-export default ProfilPage
+export default ProfilPage;
 // 전체 Container
 
 export const Container = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-`
+`;
 
 // Profil main Content
 
@@ -126,14 +130,14 @@ export const ProfilContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-`
+`;
 
 export const ProfilHeader = styled.div`
   display: flex;
   width: 935px;
   padding: 30px 20px 0;
   margin-bottom: 44px;
-`
+`;
 
 export const ProfilImgBox = styled.div`
   width: 291px;
@@ -141,31 +145,31 @@ export const ProfilImgBox = styled.div`
   margin-right: 30px;
   display: flex;
   justify-content: center;
-`
+`;
 
 export const ProfilImg = styled.img`
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  background: url('stitch2.png');
+  background: url("stitch2.png");
   background-position: center;
   background-size: cover;
   &:hover {
     cursor: pointer;
   }
   border: 1px solid rgba(0, 0, 0, 0.25);
-`
+`;
 
 export const ProfilBox = styled.div`
   height: 150px;
-`
+`;
 
 export const ProfilMainBox = styled.div`
   display: flex;
   align-items: center;
   height: 40px;
   gap: 15px;
-`
+`;
 
 export const UserName = styled.h2`
   font-size: 20px;
@@ -173,7 +177,7 @@ export const UserName = styled.h2`
   &:hover {
     cursor: pointer;
   }
-`
+`;
 
 export const ProfilBtn = styled.div`
   font-size: 14px;
@@ -186,26 +190,26 @@ export const ProfilBtn = styled.div`
     cursor: pointer;
     background-color: #fde5ec;
   }
-`
+`;
 
 export const SettingBtn = styled.div`
   padding: 10px;
   &:hover {
     cursor: pointer;
   }
-`
+`;
 
 export const SettingImg = styled.img`
   width: 24px;
   height: 24px;
-`
+`;
 
 export const SettingModal = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-`
+`;
 
 export const SettingMenu = styled.div`
   position: fixed;
@@ -214,7 +218,7 @@ export const SettingMenu = styled.div`
   width: 400px;
   border-radius: 10px;
   background-color: white;
-`
+`;
 
 export const SettingMenuBtn = styled.div`
   height: 50px;
@@ -228,15 +232,15 @@ export const SettingMenuBtn = styled.div`
     cursor: pointer;
     background-color: #fde5ec;
   }
-`
+`;
 
-export const ContentCount = styled.div``
+export const ContentCount = styled.div``;
 
 export const UserFriends = styled.div`
   &:hover {
     cursor: pointer;
   }
-`
+`;
 
 // Profil Header 끝
 
@@ -246,7 +250,7 @@ export const StoryHighlight = styled.div`
   width: 935px;
   height: 130px;
   margin-bottom: 44px;
-`
+`;
 
 export const NewHighlight = styled.div`
   width: 115px;
@@ -258,7 +262,7 @@ export const NewHighlight = styled.div`
   &:hover {
     cursor: pointer;
   }
-`
+`;
 
 export const NewHighlightBtn = styled.img`
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -266,13 +270,13 @@ export const NewHighlightBtn = styled.img`
   height: 87px;
   border-radius: 50%;
   background-color: #f3e8ff;
-`
+`;
 
 export const NewHighlightTxt = styled.p`
   font-size: 13px;
   font-weight: bold;
   margin: 10px 0;
-`
+`;
 
 // Profil NewStory 끝
 
@@ -281,7 +285,7 @@ export const ContentContiner = styled.div`
   width: 935px;
   height: 100%;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
-`
+`;
 
 export const ContentList = styled.div`
   width: 100%;
@@ -289,7 +293,7 @@ export const ContentList = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`;
 
 export const ContentListItem = styled.div`
   display: flex;
@@ -309,13 +313,13 @@ export const ContentListItem = styled.div`
     border-top: 1px solid black;
     color: black;
   }
-`
+`;
 export const ContentListItemImg = styled.img`
   width: 13px;
   height: 13px;
-`
+`;
 export const UserContentInfo = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-`
+`;
