@@ -1,62 +1,9 @@
 import styled from '@emotion/styled'
-import NavMenu from '../../components/nav'
-import CardContainer from '../../components/card'
-
-const StoryPage = () => {
-  return (
-    <Container>
-      {/* Nav 구간 */}
-      <NavMenu></NavMenu>
-      <MainContainer>
-        <LeftSection>
-          <StoryPeed>
-            <Stories>
-              <a href="#">
-                <IMG></IMG>
-              </a>
-              <NickName>이름1</NickName>
-            </Stories>
-          </StoryPeed>
-          <CardContainer />
-        </LeftSection>
-      </MainContainer>
-    </Container>
-  )
-}
-
-export default StoryPage
-// 전체 Container
-
-export const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-`
-
-export const MainContainer = styled.div`
-  margin-left: 150px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-`
-
-export const LeftSection = styled.section`
-  width: 1000px;
-  align-items: center;
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-
-  ::-webkit-scrollbar {
-    display: none;
-  }
-`
 
 export const StoryPeed = styled.div`
   border: 1px solid gray;
-  width: 900px;
+  width: 90%;
   height: 90px;
-  margin-left: 5px;
   display: flex;
   padding: 5px;
   background-color: white;
@@ -111,7 +58,7 @@ export const NickName = styled.p`
 `
 
 export const Card = styled.div`
-  margin: 20px 100px;
+  margin: 20px 140px;
   width: 60%;
   background-color: white;
   border: 1px solid gray;
@@ -270,14 +217,14 @@ export const MiddlePickture = styled.div`
   border: 3px solid pink;
 `
 export const MiddleText = styled.p`
+  font-weight: 200;
   position: inherit;
   width: 85%;
   height: 100%;
   //  margin: 10px;
   font-size: 18px;
   font-weight: 500;
-  border: 1px solid black;
-  margin-top: 30px;
+  margin-top: 35px;
   margin-left: 10px;
 `
 export const MyNickName2 = styled.p`
@@ -294,4 +241,7 @@ export const Comments = styled.input`
   margin-top: 9px;
   width: 70%;
   height: 40px;
+  &:hover{
+    
+  }
 `
