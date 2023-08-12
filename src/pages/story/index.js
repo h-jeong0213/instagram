@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import NavMenu from '../../components/nav'
 import CardContainer from '../../components/card'
+import FriendPro from '../../components/FriendPro'
 
 const StoryPage = () => {
   return (
@@ -8,17 +9,34 @@ const StoryPage = () => {
       {/* Nav 구간 */}
       <NavMenu></NavMenu>
       <MainContainer>
-        <LeftSection>
+        <LeftContainer>
           <StoryPeed>
             <Stories>
-              <a href="#">
-                <IMG></IMG>
-              </a>
+              <ProfileImage className="profileImage">
+                <ImageBorder className="image-border"></ImageBorder>
+                <ProfileCanvas className="canvasProfileLove"></ProfileCanvas>
+              </ProfileImage>
               <NickName>이름1</NickName>
             </Stories>
           </StoryPeed>
           <CardContainer />
-        </LeftSection>
+        </LeftContainer>
+        <RightContainer>
+          <SideMyPro>
+            <MyImg></MyImg>
+            <MyNickName>nickname</MyNickName>
+            <ChangeBtn>
+              <a>전환</a>
+            </ChangeBtn>
+          </SideMyPro>
+          <RecommendWrap>
+            <Recommend>회원님을 위한 추천</Recommend>
+            <AllViewBtn>
+              <a>모두 보기</a>
+            </AllViewBtn>
+          </RecommendWrap>
+          <FriendPro></FriendPro>
+        </RightContainer>
       </MainContainer>
     </Container>
   )
@@ -40,7 +58,11 @@ export const MainContainer = styled.div`
   flex-direction: column;
 `
 
-export const LeftSection = styled.section`
+export const LeftContainer = styled.section`
+  position: absolute;
+  // border: 1px solid black;
+  position: fixed;
+  box-sizing: border-box;
   width: 1000px;
   align-items: center;
   overflow-y: scroll;
@@ -71,6 +93,50 @@ export const StoryPeed = styled.div`
   ::-webkit-scrollbar {
     display: none;
   }
+`
+
+export const ProfileImage = styled.div`
+  background-color: white;
+  width: 64px;
+  height: 64px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+
+export const ProfileCanvas = styled.div`
+  background-color: gray;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  position: absolute;
+
+  background-image: url('../stitch2.png');
+  background-size: cover;
+  background-position: center;
+`
+
+export const ProfileName = styled.a`
+  background-color: white;
+  width: 64px;
+  height: 16px;
+  font-size: 8px;
+  text-align: center;
+  margin-left: 15px;
+`
+export const ImageBorder = styled.div`
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+
+  border: 2px solid transparent;
+  background-image: linear-gradient(#fff, #fff),
+    linear-gradient(to right, red 0%, orange 100%);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  position: absolute;
 `
 
 export const IpBtn = styled.p`
@@ -294,4 +360,115 @@ export const Comments = styled.input`
   margin-top: 9px;
   width: 70%;
   height: 40px;
+`
+
+export const RightContainer = styled.section`
+  border: 1px solid gray;
+  border-radius: 10px;
+  width: 400px;
+  height: 500px;
+  position: absolute;
+  right: 100px;
+  //left: 100px;
+  top: 100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (max-width: 1850px) {
+    display: none;
+  }
+`
+
+export const SideMyPro = styled.div`
+  border-bottom: 1px solid black;
+  width: 100%;
+  height: 15%;
+  box-sizing: border-box;
+`
+export const MyImg = styled.img`
+  float: left;
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: url('stitch2.png');
+  background-position: center;
+  margin: 5px;
+  background-size: cover;
+  &:hover {
+    cursor: pointer;
+  }
+  border: 1px solid rgba(0, 0, 0, 0.25);
+`
+
+export const MyNickName = styled.div`
+  display: inline-block;
+  margin-left: 7px;
+  margin-top: 22px;
+  font-size: 20px;
+  float: left;
+  width: 70%;
+  height: 40px;
+  font-weight: 500;
+`
+
+export const ChangeBtn = styled.div`
+  display: inline-block;
+  text-align: center;
+  float: left;
+  margin-top: 24px;
+  width: 40px;
+  height: 30px;
+  // border: 1px solid black;
+  color: skyblue;
+  font-weight: bold;
+
+  a {
+    &:hover {
+      color: blue;
+    }
+  }
+`
+
+export const RecommendWrap = styled.div`
+  border-bottom: 1px solid black;
+  width: 100%;
+  height: 8%;
+  box-sizing: border-box;
+  margin-top: 3px;
+`
+export const Recommend = styled.div`
+  //border: 1px solid black;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 300px;
+  height: 95%;
+  padding-left: 4px;
+  margin-top: 3px;
+  font-size: 18px;
+  font-weight: bold;
+  color: grey;
+  float: left;
+`
+
+export const AllViewBtn = styled.div`
+  // border: 1px solid black;
+  display: inline-block;
+  box-sizing: border-box;
+  text-align: center;
+  margin-left: 15px;
+  margin-top: 3px;
+  width: 75px;
+  height: 95%;
+  float: right;
+
+  a {
+    text-align: center;
+    color: skyblue;
+    font-weight: bold;
+    &:hover {
+      color: black;
+    }
+  }
 `
