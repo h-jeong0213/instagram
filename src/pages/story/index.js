@@ -376,7 +376,7 @@ export const RightContainer = styled.section`
   display: flex;
   flex-direction: column;
 
-  @media screen and (max-width: 1700px) {
+  @media screen and (max-width: 1270px) {
     display: none;
   }
 `;
