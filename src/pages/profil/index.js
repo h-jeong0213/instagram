@@ -17,7 +17,21 @@ const ProfilPage = () => {
   ];
   function TabContent({ tabs }) {
     return [
-      <UserContentInfo>게시물 내용</UserContentInfo>,
+      <UserContentInfo>
+        {/* 유저 DB가 있다면 map함수로 반복문으로 처리 필요 */}
+        <UserContent>
+          <img src="./ST.jpg" />
+        </UserContent>
+        <UserContent>
+          <img src="./ST.jpg" />
+        </UserContent>
+        <UserContent>
+          <img src="./ST.jpg" />
+        </UserContent>
+        <UserContent>
+          <img src="./ST.jpg" />
+        </UserContent>
+      </UserContentInfo>,
       <UserContentInfo>릴스 내용</UserContentInfo>,
       <UserContentInfo>저장 됨 내용</UserContentInfo>,
       <UserContentInfo>태그 됨 내용</UserContentInfo>,
@@ -321,5 +335,16 @@ export const ContentListItemImg = styled.img`
 export const UserContentInfo = styled.div`
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+`;
+
+export const UserContent = styled.div`
+  width: 309px;
+  height: 309px;
+  /* background-image: url("./ST.jpg"); */
+
+  &:hover {
+    cursor: pointer;
+    filter: brightness(70%);
+  }
 `;
