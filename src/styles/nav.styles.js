@@ -94,9 +94,10 @@ export const MiniProfilImg = styled.div`
 export const Alarm = styled.div`
   left: 200px;
   height: 100vh;
+  padding: ${({ isOpen }) => (isOpen ? "20px" : "0px")};
   width: ${({ isOpen }) => (isOpen ? "450px" : "0px")};
   overflow: hidden;
-  transition-duration: 0.5s;
+  transition-duration: 0.4s;
   /* border: 1px solid black; */
   border-radius: 0 25px 25px 0;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 15px;
