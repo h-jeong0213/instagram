@@ -21,6 +21,7 @@ export const StoryPeed = styled.div`
 `
 
 export const IpBtn = styled.p`
+  position: fixed;
   font-weight: bold;
   font-size: 20px;
   width: 30px;
@@ -173,7 +174,8 @@ export const Review = styled.div`
 export const MiddleButtonWrap = styled.div`
   width: 80%;
   height: 100%;
-  position: relative;
+  // position: relative;
+  display: flex;
   box-sizing: border-box;
 `
 
@@ -184,6 +186,18 @@ export const MiddleButton = styled.img`
   box-sizing: border-box;
   display: inline-block;
   overflow: hidden;
+`
+export const MiddleButton2 = styled.div`
+  margin-left: 5px;
+  width: 30px;
+  height: 50px;
+  box-sizing: border-box;
+  display: flex;
+  overflow: hidden;
+  background-image: url('../balloon.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 `
 
 export const SaveButton = styled.img`
@@ -241,7 +255,6 @@ export const Comments = styled.input`
   margin-top: 9px;
   width: 70%;
   height: 40px;
-  &:hover{
-    
+  &:hover {
   }
 `
