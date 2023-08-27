@@ -8,7 +8,7 @@ const ProfilPage = () => {
     /* let [more, setMore] = useState(false) */
   }
   axios
-    .get("../../JSON/user.json")
+    .get("/public/user.json")
     .then((users) => {
       console.log(users);
     })
