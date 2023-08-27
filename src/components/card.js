@@ -11,6 +11,7 @@ import {
   ButtonWrap,
   MiddleButtonWrap,
   MiddleButton,
+  MiddleButton2,
   SaveButton,
   TextWrap,
   NiceNumberWrap,
@@ -21,9 +22,11 @@ import {
   MyNickName2,
   Comments,
   HeartButton,
+  BackDrop,
 } from '../styles/card.styles'
 import Modal1 from './modal'
 import { useState } from 'react'
+import CommentModal from './commentModal'
 
 const CardContainer = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -65,10 +68,17 @@ const CardContainer = () => {
       <ButtonWrap>
         <MiddleButtonWrap>
           <MiddleButton src="heart (1).svg"></MiddleButton>
-          <MiddleButton
-            src="../balloon.svg"
-            onClick={onCommentButton}
-          ></MiddleButton>
+          <Modal>
+            <MiddleButton2 onClick={onCommentButton}></MiddleButton2>
+            {isCommentOpen && (
+              <CommentModal
+                open={isCommentOpen}
+                onClose={() => {
+                  setIsCommentOpen(false)
+                }}
+              ></CommentModal>
+            )}
+          </Modal>
           <MiddleButton src="chat-square-heart-fill.svg"></MiddleButton>
         </MiddleButtonWrap>
         <SaveButton src="../save.svg"></SaveButton>
@@ -107,5 +117,9 @@ export const OpenBtn = styled.button`
 `
 
 export const Modal = styled.div`
+  text-align: center;
+`
+
+export const CommendModal = styled.div`
   text-align: center;
 `

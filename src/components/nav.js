@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react'
 import {
   Navbar,
   LogoBox,
@@ -11,11 +11,11 @@ import {
   MoreCard,
   MoreCardItem,
   Alarm,
-} from "../styles/nav.styles";
+} from '../styles/nav.styles'
 
 const NavMenu = () => {
-  let [alarm, setAlarm] = useState(false);
-  let [more, setMore] = useState(false);
+  let [alarm, setAlarm] = useState(false)
+  let [more, setMore] = useState(false)
   return (
     <>
       <Navbar>
@@ -46,7 +46,7 @@ const NavMenu = () => {
           </NavItem>
           <NavItem
             onClick={() => {
-              alarm == true ? setAlarm(!true) : setAlarm(true);
+              alarm == true ? setAlarm(!true) : setAlarm(true)
             }}
           >
             <NavSvg className="navImgBox" src="heart (1).svg"></NavSvg>
@@ -69,7 +69,7 @@ const NavMenu = () => {
         <NavItem
           className="moreBox"
           onClick={() => {
-            more == true ? setMore(!true) : setMore(true);
+            more == true ? setMore(!true) : setMore(true)
           }}
         >
           <NavSvg className="navImgBox" src="list (1).svg"></NavSvg>
@@ -86,7 +86,7 @@ const NavMenu = () => {
         </div>
       </Alarm>
     </>
-  );
-};
+  )
+}
 
-export default NavMenu;
+export default NavMenu
