@@ -10,7 +10,7 @@ const ProfilPage = () => {
   axios
     .get("/public/user.json")
     .then((users) => {
-      console.log(users);
+      console.log(users.data);
     })
     .catch((err) => {
       console.log("에러:", err);
