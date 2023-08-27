@@ -7,14 +7,6 @@ const ProfilPage = () => {
   {
     /* let [more, setMore] = useState(false) */
   }
-  axios
-    .get("/public/user.json")
-    .then((users) => {
-      console.log(users.data);
-    })
-    .catch((err) => {
-      console.log("에러:", err);
-    });
 
   let [tabs, setTabs] = useState(2);
   let [activeTab, setActiveTab] = useState(0);
