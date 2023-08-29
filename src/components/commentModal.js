@@ -1,6 +1,8 @@
 import styled from '@emotion/styled'
 import { useRef, useState } from 'react'
 import Modal1 from './modal'
+import UserComment from './userComment'
+import CommentFooter from './CommentFooter'
 
 const CommentModal = ({ onClose }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -40,20 +42,8 @@ const CommentModal = ({ onClose }) => {
                   )}
                 </Modal>
               </MyComment>
-              <FriendProWrap2>
-                <FriendImg2></FriendImg2>
-                <FriendNameWrap>
-                  <CommentWrap2>
-                    <FriendName2>friendName</FriendName2>
-                    <p>댓글</p>
-                  </CommentWrap2>
-                  <Wrap>
-                    <Time>00분전</Time>
-                    <LikeNumber>좋아요 n개</LikeNumber>
-                  </Wrap>
-                </FriendNameWrap>
-                <LikeButton src="heart (1).svg" />
-              </FriendProWrap2>
+              <UserComment></UserComment>
+              <CommentFooter />
             </CommentWrap>
           </CommentImgWrap>
           <Button onClick={handleClose}>취소</Button>
@@ -157,8 +147,9 @@ export const CommentWrap = styled.div`
   border: 1px solid black;
   width: 300px;
   height: 600px;
-  //  display: flex;
+  display: flex;
   flex: 2;
+  flex-direction: column;
 `
 
 export const MyComment = styled.div`
@@ -233,85 +224,4 @@ export const OpenBtn2 = styled.button`
   &:hover {
     color: red;
   }
-`
-
-export const FriendProWrap2 = styled.div`
-  //border: 1px solid pink;
-  width: 450px;
-  height: 50px;
-  display: flex;
-  margin-left: 10px;
-
-  // justify-content: space-between;
-`
-
-export const FriendImg2 = styled.img`
-  width: 35px;
-  height: 35px;
-  margin: 15px 10px;
-
-  border-radius: 50%;
-
-  background-image: url('../stitch2.png');
-  background-size: cover;
-  background-position: center;
-`
-export const FriendName2 = styled.div`
-  //border: 1px solid black;
-  box-sizing: border-box;
-  // text-align: left;
-  height: 20px;
-  margin-top: 10px;
-  margin-right: 5px;
-  overflow: hidden;
-  white-space: nowrap;
-  font-size: 15px;
-  font-weight: 550;
-`
-
-export const FriendNameWrap = styled.div`
-  box-sizing: border-box;
-  position: relative;
-  // border: 1px solid black;
-  // box-align: start;
-`
-
-export const Wrap = styled.div`
-  //  border: 1px solid black;
-  box-align: center;
-  font-size: 12px;
-  height: 15px;
-  box-sizing: border-box;
-  text-align: left;
-`
-
-export const Time = styled.a`
-  // border: 1px solid black;
-  margin: 0 5px;
-  box-sizing: border-box;
-  color: gray;
-`
-
-export const LikeNumber = styled.a`
-  // border: 1px solid black;
-  margin: 0 5px;
-  box-sizing: border-box;
-  color: gray;
-`
-
-export const LikeButton = styled.img`
-  // border: 1px solid black;
-  width: 15px;
-  margin-top: 20px;
-  right: 40px;
-  position: absolute;
-  box-sizing: border-box;
-  //overflow: hidden;
-`
-
-export const CommentWrap2 = styled.div`
-  //border: 1px solid black;
-  width: 380px;
-  display: flex;
-  font-size: 13px;
 `
