@@ -3,7 +3,7 @@ import axios from "axios";
 
 export default function Home() {
   axios
-    .get("/public/users.json")
+    .get("/users.json")
     .then((users) => {
       console.log(users.data);
     })
