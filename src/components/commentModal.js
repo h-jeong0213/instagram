@@ -42,7 +42,9 @@ const CommentModal = ({ onClose }) => {
                   )}
                 </Modal>
               </MyComment>
-              <UserComment></UserComment>
+              <UserCommentWrap>
+                <UserComment></UserComment>
+              </UserCommentWrap>
               <CommentFooter />
             </CommentWrap>
           </CommentImgWrap>
@@ -223,5 +225,20 @@ export const OpenBtn2 = styled.button`
 
   &:hover {
     color: red;
+  }
+`
+
+export const UserCommentWrap = styled.div`
+  // border: 1px solid black;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  //overflow: scroll;
+  width: 450px;
+  height: 100%;
+
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
   }
 `

@@ -202,6 +202,7 @@ export const MiddleButton2 = styled.div`
 
 export const SaveButton = styled.img`
   margin-right: 5px;
+  margin-top: 10px;
   width: 30px;
   height: 25px;
   box-sizing: border-box;

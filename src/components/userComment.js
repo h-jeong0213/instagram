@@ -7,7 +7,7 @@ const UserComment = () => {
       <FriendNameWrap>
         <CommentWrap2>
           <FriendName2>friendName</FriendName2>
-          <UserComments>댓글</UserComments>
+          <UserComments></UserComments>
         </CommentWrap2>
         <Wrap>
           <Time>00분전</Time>
@@ -24,7 +24,6 @@ export default UserComment
 export const FriendProWrap2 = styled.div`
   //border: 1px solid pink;
   width: 450px;
-  height: 50px;
   display: flex;
   margin-left: 10px;
 
@@ -34,7 +33,7 @@ export const FriendProWrap2 = styled.div`
 export const FriendImg2 = styled.img`
   width: 35px;
   height: 35px;
-  margin: 15px 10px;
+  margin: 8px 10px;
 
   border-radius: 50%;
 
@@ -47,7 +46,7 @@ export const FriendName2 = styled.div`
   box-sizing: border-box;
   // text-align: left;
   height: 20px;
-  margin-top: 15px;
+  margin-top: 8px;
   margin-right: 5px;
   overflow: hidden;
   white-space: nowrap;
@@ -63,8 +62,9 @@ export const FriendNameWrap = styled.div`
 `
 
 export const Wrap = styled.div`
-  //  border: 1px solid black;
+  //border: 1px solid black;
   box-align: center;
+  width: 200px;
   font-size: 12px;
   height: 15px;
   box-sizing: border-box;
@@ -105,7 +105,7 @@ export const CommentWrap2 = styled.div`
 export const UserComments = styled.p`
   text-align: left;
   width: 250px;
-  margin-top: 18px;
-  border: 1px solid black;
+  margin-top: 10px;
+  // border: 1px solid black;
   word-wrap: break-word;
 `
