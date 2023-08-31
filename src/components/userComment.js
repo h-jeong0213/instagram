@@ -7,14 +7,14 @@ const UserComment = () => {
       <FriendNameWrap>
         <CommentWrap2>
           <FriendName2>friendName</FriendName2>
-          <UserComments></UserComments>
+          <UserComments>댓글댓글댓글</UserComments>
+          <LikeButton src="heart (1).svg" />
         </CommentWrap2>
         <Wrap>
           <Time>00분전</Time>
           <LikeNumber>좋아요 n개</LikeNumber>
         </Wrap>
       </FriendNameWrap>
-      <LikeButton src="heart (1).svg" />
     </FriendProWrap2>
   );
 };
@@ -55,9 +55,11 @@ export const FriendName2 = styled.div`
 `;
 
 export const FriendNameWrap = styled.div`
-  box-sizing: border-box;
-  position: relative;
   // border: 1px solid black;
+  box-sizing: border-box;
+  width: 370px;
+
+  // position: relative;
   // box-align: start;
 `;
 
@@ -87,16 +89,19 @@ export const LikeNumber = styled.a`
 
 export const LikeButton = styled.img`
   // border: 1px solid black;
-  width: 15px;
-  margin-top: 20px;
+  width: 20px;
+  margin: 10px 5px;
+  //position: fixed;
+  display: flex;
+  overflow: hidden;
   right: 40px;
-  /* position: absolute; */
+  position: absolute;
   box-sizing: border-box;
   //overflow: hidden;
 `;
 
 export const CommentWrap2 = styled.div`
-  //border: 1px solid black;
+  // border: 1px solid black;
   width: 380px;
   display: flex;
   font-size: 13px;
