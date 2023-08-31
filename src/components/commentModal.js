@@ -1,18 +1,18 @@
-import styled from '@emotion/styled'
-import { useRef, useState } from 'react'
-import Modal1 from './modal'
-import UserComment from './userComment'
-import CommentFooter from './CommentFooter'
+import styled from "@emotion/styled";
+import { useRef, useState } from "react";
+import Modal1 from "./modal";
+import UserComment from "./userComment";
+import CommentFooter from "./CommentFooter";
 
 const CommentModal = ({ onClose }) => {
-  const [isOpen, setIsOpen] = useState(false)
-  const modalRef = useRef(null)
+  const [isOpen, setIsOpen] = useState(false);
+  const modalRef = useRef(null);
   const handleClose = () => {
-    onClose?.()
-  }
+    onClose?.();
+  };
   const onClickButton = () => {
-    setIsOpen(true)
-  }
+    setIsOpen(true);
+  };
 
   return (
     <Overlay>
@@ -36,7 +36,7 @@ const CommentModal = ({ onClose }) => {
                     <Modal1
                       open={isOpen}
                       onClose={() => {
-                        setIsOpen(false)
+                        setIsOpen(false);
                       }}
                     />
                   )}
@@ -52,10 +52,10 @@ const CommentModal = ({ onClose }) => {
         </Contents>
       </ModalWrap>
     </Overlay>
-  )
-}
+  );
+};
 
-export default CommentModal
+export default CommentModal;
 
 export const Overlay = styled.div`
   position: fixed;
@@ -67,7 +67,7 @@ export const Overlay = styled.div`
   right: 0;
   background: rgba(0, 0, 0, 0.2);
   z-index: 9999;
-`
+`;
 
 export const ModalWrap = styled.div`
   width: 1200px;
@@ -88,7 +88,7 @@ export const ModalWrap = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
   }
-`
+`;
 
 export const openBtn = styled.div`
   float: right;
@@ -101,7 +101,7 @@ export const openBtn = styled.div`
     color: #5d5d5d;
     font-size: 30px;
   }
-`
+`;
 
 export const Contents = styled.div`
   margin: 5px;
@@ -111,7 +111,7 @@ export const Contents = styled.div`
     font-size: 600;
     margin-bottom: 50px;
   }
-`
+`;
 
 export const Button = styled.button`
   font-size: 14px;
@@ -127,15 +127,15 @@ export const Button = styled.button`
   &:hover {
     background-color: beige;
   }
-`
+`;
 
 export const Modal = styled.div`
   text-align: center;
   margin: 50px auto;
-`
+`;
 export const CommentImgWrap = styled.div`
   display: flex;
-`
+`;
 export const StoryImg = styled.div`
   border: 1px solid black;
   border-radius: 15px;
@@ -144,7 +144,7 @@ export const StoryImg = styled.div`
   display: flex;
   flex: 3;
   position: relative;
-`
+`;
 export const CommentWrap = styled.div`
   border: 1px solid black;
   width: 300px;
@@ -152,7 +152,7 @@ export const CommentWrap = styled.div`
   display: flex;
   flex: 2;
   flex-direction: column;
-`
+`;
 
 export const MyComment = styled.div`
   border-bottom: 1px solid gray;
@@ -161,7 +161,7 @@ export const MyComment = styled.div`
   box-sizing: border-box;
   height: 70px;
   width: 95%;
-`
+`;
 
 export const ProfileImage2 = styled.div`
   background-color: white;
@@ -172,7 +172,7 @@ export const ProfileImage2 = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`
+`;
 
 export const ProfileCanvas2 = styled.div`
   background-color: gray;
@@ -181,10 +181,10 @@ export const ProfileCanvas2 = styled.div`
   border-radius: 50%;
   position: absolute;
 
-  background-image: url('../stitch2.png');
+  background-image: url("../stitch2.png");
   background-size: cover;
   background-position: center;
-`
+`;
 
 export const ImageBorder2 = styled.div`
   width: 40px;
@@ -197,11 +197,11 @@ export const ImageBorder2 = styled.div`
   background-origin: border-box;
   background-clip: content-box, border-box;
   position: absolute;
-`
+`;
 
 export const NickNameWrap = styled.div`
   display: flex;
-`
+`;
 export const NickName = styled.p`
   height: 40px;
   margin-left: 3px;
@@ -210,7 +210,7 @@ export const NickName = styled.p`
   text-overflow: ellipsis;
   font-size: 15px;
   font-weight: 550;
-`
+`;
 export const OpenBtn2 = styled.button`
   border: 1px solid black;
   position: fixed;
@@ -226,7 +226,7 @@ export const OpenBtn2 = styled.button`
   &:hover {
     color: red;
   }
-`
+`;
 
 export const UserCommentWrap = styled.div`
   // border: 1px solid black;
@@ -241,4 +241,4 @@ export const UserCommentWrap = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-`
+`;

@@ -1,4 +1,4 @@
-import styled from '@emotion/styled'
+import styled from "@emotion/styled";
 
 const UserComment = () => {
   return (
@@ -16,10 +16,10 @@ const UserComment = () => {
       </FriendNameWrap>
       <LikeButton src="heart (1).svg" />
     </FriendProWrap2>
-  )
-}
+  );
+};
 
-export default UserComment
+export default UserComment;
 
 export const FriendProWrap2 = styled.div`
   //border: 1px solid pink;
@@ -28,7 +28,7 @@ export const FriendProWrap2 = styled.div`
   margin-left: 10px;
 
   // justify-content: space-between;
-`
+`;
 
 export const FriendImg2 = styled.img`
   width: 35px;
@@ -37,10 +37,10 @@ export const FriendImg2 = styled.img`
 
   border-radius: 50%;
 
-  background-image: url('../stitch2.png');
+  background-image: url("../stitch2.png");
   background-size: cover;
   background-position: center;
-`
+`;
 export const FriendName2 = styled.div`
   //border: 1px solid black;
   box-sizing: border-box;
@@ -52,14 +52,14 @@ export const FriendName2 = styled.div`
   white-space: nowrap;
   font-size: 15px;
   font-weight: 550;
-`
+`;
 
 export const FriendNameWrap = styled.div`
   box-sizing: border-box;
   position: relative;
   // border: 1px solid black;
   // box-align: start;
-`
+`;
 
 export const Wrap = styled.div`
   //border: 1px solid black;
@@ -69,38 +69,38 @@ export const Wrap = styled.div`
   height: 15px;
   box-sizing: border-box;
   text-align: left;
-`
+`;
 
 export const Time = styled.a`
   // border: 1px solid black;
   margin: 0 5px;
   box-sizing: border-box;
   color: gray;
-`
+`;
 
 export const LikeNumber = styled.a`
   // border: 1px solid black;
   margin: 0 5px;
   box-sizing: border-box;
   color: gray;
-`
+`;
 
 export const LikeButton = styled.img`
   // border: 1px solid black;
   width: 15px;
   margin-top: 20px;
   right: 40px;
-  position: absolute;
+  /* position: absolute; */
   box-sizing: border-box;
   //overflow: hidden;
-`
+`;
 
 export const CommentWrap2 = styled.div`
   //border: 1px solid black;
   width: 380px;
   display: flex;
   font-size: 13px;
-`
+`;
 
 export const UserComments = styled.p`
   text-align: left;
@@ -108,4 +108,4 @@ export const UserComments = styled.p`
   margin-top: 10px;
   // border: 1px solid black;
   word-wrap: break-word;
-`
+`;
