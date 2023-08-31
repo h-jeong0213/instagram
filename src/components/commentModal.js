@@ -44,6 +44,7 @@ const CommentModal = ({ onClose }) => {
               </MyComment>
               <UserCommentWrap>
                 <UserComment></UserComment>
+                <UserComment></UserComment>
               </UserCommentWrap>
               <CommentFooter />
             </CommentWrap>
@@ -233,12 +234,8 @@ export const UserCommentWrap = styled.div`
   overflow-x: hidden;
   overflow-y: scroll;
   //overflow: scroll;
-  width: 450px;
+  width: 470px;
   height: 100%;
 
   -ms-overflow-style: none;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
 `

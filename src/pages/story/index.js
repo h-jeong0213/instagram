@@ -81,11 +81,17 @@ export const StoryPeed = styled.div`
   height: 100px;
   margin-left: 5px;
   display: flex;
+  // position: relative;
   padding: 5px;
   background-color: white;
 
   overflow-y: hidden;
   overflow-x: scroll;
+`
+export const Stories = styled.div`
+  width: 10%;
+  box-sizing: border-box;
+  position: relative;
 `
 
 export const ProfileImage = styled.div`
@@ -139,12 +145,6 @@ export const IpBtn = styled.p`
   width: 30px;
 `
 
-export const Stories = styled.div`
-  width: 10%;
-  box-sizing: border-box;
-  position: relative;
-`
-
 export const IMG = styled.img`
   //  border-radius: 50%;
   // border: 2px solid pink;
@@ -163,7 +163,7 @@ export const IMG = styled.img`
 `
 
 export const NickName = styled.p`
-  border: 1px solid black;
+  //border: 1px solid black;
   width: 70px;
   overflow: hidden;
   white-space: nowrap;
