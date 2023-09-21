@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import {
   MainBox,
   LeftSection,
@@ -16,8 +17,32 @@ import {
   SignUpPanel,
   Signup,
 } from '../../styles/signIn.styleds'
+import axios from 'axios'
+import pool from '../../db'
 
 const SignInPage = () => {
+  const [user_id, setUser_id] = useState('')
+  const [pw, setPw] = useState('')
+
+  const handleInputId = (e) => {
+    setInputId(e.target.value)
+  }
+
+  const handleInputPw = (e) => {
+    setInputPw(e.target.value)
+  }
+
+  const onSignInClick = () => {
+    // 어려워요....
+  }
+
+  useEffect(() => {
+    axios
+      .get('/api/login')
+      .then((res) => console.log(res))
+      .catch()
+  }, [])
+
   return (
     <>
       <MainBox>
@@ -32,17 +57,25 @@ const SignInPage = () => {
             <Container>
               <InputBox
                 type="text"
-                name="username"
+                name="user_id"
                 required
                 placeholder="전화번호 또는 이메일"
+                onChange={handleInputId}
+                setInputPw
               />
               <InputBox
                 type="password"
-                name="password"
+                name="pw"
                 required
                 placeholder="비밀번호를 입력해주세요"
+                onChange={handleInputPw}
+                setInputPw
               />
-              <LoginButton type="submit" name="login" value="로그인" />
+              <LoginButton
+                type="submit"
+                value="로그인"
+                onClick={onSignInClick}
+              />
               <Divider>
                 <Line></Line>
                 <p>OR</p>
