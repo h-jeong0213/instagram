@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 import {
   MainBox,
   LeftSection,
@@ -16,32 +16,38 @@ import {
   Forgot,
   SignUpPanel,
   Signup,
-} from '../../styles/signIn.styleds'
-import axios from 'axios'
-import pool from '../../db'
+} from "../../styles/signIn.styleds";
+import axios from "axios";
 
 const SignInPage = () => {
-  const [user_id, setUser_id] = useState('')
-  const [pw, setPw] = useState('')
+  const [user_id, setUser_id] = useState("");
+  const [pw, setPw] = useState("");
 
   const handleInputId = (e) => {
-    setInputId(e.target.value)
-  }
+    setInputId(e.target.value);
+  };
 
   const handleInputPw = (e) => {
-    setInputPw(e.target.value)
-  }
+    setInputPw(e.target.value);
+  };
 
   const onSignInClick = () => {
     // 어려워요....
-  }
+  };
+
+  let users = [];
 
   useEffect(() => {
     axios
-      .get('/api/login')
-      .then((res) => console.log(res))
-      .catch()
-  }, [])
+      .get("/api/login")
+      .then((res) => {
+        users = res.data;
+        console.log(users);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <>
@@ -92,7 +98,7 @@ const SignInPage = () => {
         </RightSection>
       </MainBox>
     </>
-  )
-}
+  );
+};
 
-export default SignInPage
+export default SignInPage;
