@@ -114,25 +114,32 @@ const SignUpPage = () => {
     }
   };
 
+  console.log("isId:", isId);
+  console.log("isPw:", isPw);
+  console.log("isNickName:", isNickName);
   const onSignUpClick = () => {
-    axios
-      .post("/api/signup", {
-        user_id: IdInputRef.current.value,
-        pw: PwInputRef.current.value,
-        user_name: NameInputRef.current.value,
-      })
-      .then((res) => {
-        console.log("res.data :", res.body);
-        alert("회원가입 성공!");
-        router.replace("../signIn");
-      })
-      .catch((err) => console.log(err, "실패"));
+    if (!isId || !isPw || !isNickName) {
+      alert("모든 정보를 알맞게 입력해주세요.");
+    } else {
+      axios
+        .post("/api/signup", {
+          user_id: IdInputRef.current.value,
+          pw: PwInputRef.current.value,
+          user_name: NickNameInputRef.current.value,
+        })
+        .then((res) => {
+          console.log("res.data :", res.body);
+          alert("회원가입 성공!");
+          router.replace("../signIn");
+        })
+        .catch((err) => console.log(err, "실패"));
+    }
   };
 
   return (
     <BigContainer>
       <Container>
-        <image className="logo">logo</image>
+        {/* <image className="logo">logo</image> */}
         <div>
           <SignUpTitle>
             친구들의 사진과 동영상을 보려면 <br />
