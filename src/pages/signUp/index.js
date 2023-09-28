@@ -10,9 +10,18 @@ import {
   SignUpForm,
   SignUpTitle,
 } from "../../styles/signup.styles";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const SignUpPage = () => {
+
+  const []
+
+  const onSignUpClick = ()=>{
+    axios.post('/api/signup',{
+      user_id = 
+    })
+  }
+
   return (
     <BigContainer>
       <Container>
@@ -32,9 +41,9 @@ const SignUpPage = () => {
           <Line></Line>
         </LineBox>
         <SignUpForm>
-          <Input type="email" name="id" placeholder="이메일 주소"></Input>
+          <Input type="email" name="id" placeholder="이메일 주소" ref={UserIdRef}></Input>
           <Input type="text" name="nickName" placeholder="이름"></Input>
-          <Input type="text" name="userName" placeholder="사용자 이름"></Input>
+          <Input type="text" name="userName" placeholder="사용자 이름" ref={UserNameRef}></Input>
           <Input type="password" name="pw" placeholder="비밀번호"></Input>
           <SignUpBtn type="submit"> 가입 </SignUpBtn>
           <div></div>
