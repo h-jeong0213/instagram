@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios'
 import {
   BigContainer,
   Container,
@@ -9,17 +9,100 @@ import {
   SignUpBtn,
   SignUpForm,
   SignUpTitle,
-} from "../../styles/signup.styles";
-import { useEffect, useState } from "react";
+} from '../../styles/signup.styles'
+import handler from '../api/signup'
+import { useRef, useState } from 'react'
+import { useRouter } from 'next/router'
 
 const SignUpPage = () => {
+  const router = useRouter()
+  // 초기값
+  const [id, setId] = useState('')
+  const [pw, setPw] = useState('')
+  const [pwCheck, setPwCheck] = useState('')
+  const [nickName, setNickName] = useState('')
 
-  const []
+  // 오류메세지
+  const [idErr, setIdErr] = useState('')
+  const [pwErr, setPwErr] = useState('')
+  const [pwCheckErr, setPwCheckErr] = useState('')
+  const [nickNameErr, setNickNameErr] = useState('')
 
-  const onSignUpClick = ()=>{
-    axios.post('/api/signup',{
-      user_id = 
-    })
+  // 유효성검사
+  const [isId, setIsId] = useState(false)
+  const [isPw, setIsPw] = useState(false)
+  const [isNickName, setIsNickName] = useState(false)
+
+  const IdInputRef = useRef(null)
+  const PwInputRef = useRef(null)
+  const PwCheckInputRef = useRef(null)
+  const NickNameInputRef = useRef(null)
+
+  const onChangeId = (e) => {
+    const currentId = e.target.value
+    setId(currentId)
+    const idReg = /^[a-zA-Z][0-9a-zA-Z]{4,7}$/
+
+    if (!idReg.test(currentId)) {
+      setIdErr('이메일의 형식이 올바르지 않습니다')
+      setIsId(false)
+    } else {
+      setIdErr('사용 가능한 이메일 입니다.')
+      setIsId(true)
+    }
+  }
+
+  const onChangePw = (e) => {
+    const currentPw = e.target.value
+    setPw(currentPw)
+    const PwReg = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/
+
+    if (!PwReg.test(currentPw)) {
+      setPwErr('숫자,영문,특수문자를 사용하여 8자리 이상 입력해주세요')
+      setIsPw(false)
+    } else {
+      setPwErr('안전한 비밀번호 입니다.')
+      setIsPw(true)
+    }
+  }
+
+  const onChangePwCheck = (e) => {
+    const currentPwCheck = e.target.value
+    setPwCheck(currentPwCheck)
+    if (onChangePw === onChangePwCheck) {
+      setPwCheckErr('비밀번호가 일치합니다.')
+    } else {
+      setPwCheckErr('비밀번호가 일치하지 않습니다.')
+    }
+  }
+
+  const onChangeNickName = (e) => {
+    const currentNickName = e.target.value
+    setNickName(currentNickName)
+
+    if (currentNickName.lenght > 2 || currentNickName.lenght > 5) {
+      setNickNameErr('닉네임은 2글자 이상 5글자 이하로 입력해주세요')
+      setIsNickName(false)
+      NickNameInputRef.current.focus()
+    } else {
+      setNickNameErr('사용 가능한 닉네임입니다.')
+      setIsNickName(true)
+    }
+  }
+
+  const onSignUpClick = () => {
+    axios
+      .post('/api/signup', {
+        user_id: IdInputRef.current.value,
+        pw: PwInputRef.current.value,
+        user_name: NameInputRef.current.value,
+      })
+      .then((res) => {
+        console.log('res.data :', res.body)
+        alert('회원가입 성공!')
+        router.replace('../signIn')
+      })
+      .catch((err) => console.log(err, '실패'))
   }
 
   return (
@@ -40,25 +123,52 @@ const SignUpPage = () => {
           <p>또는</p>
           <Line></Line>
         </LineBox>
-        <SignUpForm>
-          <Input type="email" name="id" placeholder="이메일 주소" ref={UserIdRef}></Input>
-          <Input type="text" name="nickName" placeholder="이름"></Input>
-          <Input type="text" name="userName" placeholder="사용자 이름" ref={UserNameRef}></Input>
-          <Input type="password" name="pw" placeholder="비밀번호"></Input>
-          <SignUpBtn type="submit"> 가입 </SignUpBtn>
+        <SignUpForm onSubmit={handler}>
+          <Input
+            type="text"
+            name="id"
+            placeholder="이메일 주소"
+            onChange={onChangeId}
+            ref={IdInputRef}
+          ></Input>
+          <Input
+            type="text"
+            name="nickName"
+            placeholder="닉네임"
+            onChange={onChangeNickName}
+            ref={NickNameInputRef}
+          ></Input>
+          <Input
+            type="password"
+            name="pw"
+            placeholder="비밀번호"
+            onChange={onChangePw}
+            ref={PwInputRef}
+          ></Input>
+          <Input
+            type="password"
+            name="pw"
+            placeholder="비밀번호확인"
+            onChange={onChangePwCheck}
+            ref={PwCheckInputRef}
+          ></Input>
+
+          <SignUpBtn type="submit" onClick={onSignUpClick}>
+            가입
+          </SignUpBtn>
           <div></div>
         </SignUpForm>
       </Container>
       <Container>
         <p>
-          계정이 있으신가요?{" "}
-          <a href="#" style={{ textDecoration: "none" }}>
+          계정이 있으신가요?
+          <a href="#" style={{ textDecoration: 'none' }}>
             로그인
           </a>
         </p>
       </Container>
     </BigContainer>
-  );
-};
+  )
+}
 
-export default SignUpPage;
+export default SignUpPage
