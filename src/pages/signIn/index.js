@@ -20,15 +20,15 @@ import {
 import axios from "axios";
 
 const SignInPage = () => {
-  const [user_idRef, setUser_id] = useState("");
-  const [pwRef, setPw] = useState("");
+  const [user_idRef, setUser_idRef] = useState("");
+  const [pwRef, setPwRef] = useState("");
 
   const handleInputId = (e) => {
-    setUser_id(e.target.value);
+    setUser_idRef(e.target.value);
   };
 
   const handleInputPw = (e) => {
-    setPw(e.target.value);
+    setPwRef(e.target.value);
   };
 
   const onSignInClick = (e) => {

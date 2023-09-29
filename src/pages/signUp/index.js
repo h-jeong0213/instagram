@@ -139,7 +139,7 @@ const SignUpPage = () => {
   return (
     <BigContainer>
       <Container>
-        {/* <image className="logo">logo</image> */}
+        <image className="logo">logo</image>
         <div>
           <SignUpTitle>
             친구들의 사진과 동영상을 보려면 <br />
