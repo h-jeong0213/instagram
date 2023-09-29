@@ -24,14 +24,28 @@ const SignInPage = () => {
   const [pw, setPw] = useState("");
 
   const handleInputId = (e) => {
-    setInputId(e.target.value);
+    setUser_id(e.target.value);
   };
 
   const handleInputPw = (e) => {
-    setInputPw(e.target.value);
+    setPw(e.target.value);
   };
 
-  const onSignInClick = () => {
+  const onSignInClick = (e) => {
+    e.preventDefault();
+    console.log(user_id, pw);
+    axios
+      .post("/api/login", {
+        user_id: user_id,
+        pw: pw,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
     // 어려워요....
   };
 
@@ -82,6 +96,7 @@ const SignInPage = () => {
                 value="로그인"
                 onClick={onSignInClick}
               />
+
               <Divider>
                 <Line></Line>
                 <p>OR</p>
