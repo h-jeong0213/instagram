@@ -3,34 +3,20 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
 const handler = async (req, res) => {
-  if (req.method === "GET") {
-    let conn = null;
-    try {
-      let conn = await pool.getConnection();
-      let [result] = await conn.query("SELECT * FROM users");
-
-      // console.log(result)
-      res.status(200).json(result);
-      return;
-    } catch (err) {
-      res.status(500).json({ message: "서버 오류 발생" });
-    } finally {
-      if (conn !== null) conn.release();
-    }
-  }
-
+  const { user_id, pw } = req.body;
   if (req.method === "POST") {
-    let { user_id, pw } = req.body;
-
+    console.log("req =", req.body);
     console.log("POST왔어요!");
 
     let conn = null;
     try {
       conn = await pool.getConnection();
-      let [result] = conn.query("SELECT * FROM users WHERE user_id=?", user_id);
-
+      console.log(user_id);
+      let [result] = await conn.query(
+        "SELECT * FROM users WHERE user_id=?",
+        user_id
+      );
       console.log("try왔어요!");
-
       if (result.length === 0) {
         // 해당 아이디가 존재하지 않음
         console.log("if왔어요");
@@ -52,19 +38,20 @@ const handler = async (req, res) => {
       }
 
       // 이메일 비밀번호 모두 성공
-      let accessToken = jwt.sign(
+      const accessToken = jwt.sign(
         { id: result[0].id, user_name: result[0].user_name },
-        "secret",
+        process.env.JWT_SECRET, // 시크릿 키는 환경 변수로 가져옵니다.
         {
           expiresIn: "1h",
         }
       );
       console.log(accessToken);
       console.log("토큰 왔어요");
+
       res.status(200).json({ message: "로그인성공", accessToken: accessToken });
     } catch (err) {
       console.log("500에러 왔어요");
-      res.status(500).json({ message: "서버오류발생" });
+      res.status(500).json(err);
     } finally {
       console.log("파이널리 왔어요");
       if (conn !== null) conn.release();

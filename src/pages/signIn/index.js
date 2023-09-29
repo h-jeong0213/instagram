@@ -20,8 +20,8 @@ import {
 import axios from "axios";
 
 const SignInPage = () => {
-  const [user_id, setUser_id] = useState("");
-  const [pw, setPw] = useState("");
+  const [user_idRef, setUser_id] = useState("");
+  const [pwRef, setPw] = useState("");
 
   const handleInputId = (e) => {
     setUser_id(e.target.value);
@@ -33,11 +33,11 @@ const SignInPage = () => {
 
   const onSignInClick = (e) => {
     e.preventDefault();
-    console.log(user_id, pw);
+    console.log(user_idRef, pwRef);
     axios
       .post("/api/login", {
-        user_id: user_id,
-        pw: pw,
+        user_id: user_idRef,
+        pw: pwRef,
       })
       .then((res) => {
         console.log(res);
@@ -48,20 +48,6 @@ const SignInPage = () => {
 
     // 어려워요....
   };
-
-  let users = [];
-
-  useEffect(() => {
-    axios
-      .get("/api/login")
-      .then((res) => {
-        users = res.data;
-        console.log(users);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
 
   return (
     <>
