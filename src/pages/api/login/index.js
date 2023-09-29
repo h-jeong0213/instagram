@@ -11,29 +11,26 @@ const handler = async (req, res) => {
     let conn = null;
     try {
       conn = await pool.getConnection();
-      console.log(user_id);
       let [result] = await conn.query(
         "SELECT * FROM users WHERE user_id=?",
         user_id
       );
+      console.log(result[0]);
       console.log("try왔어요!");
       if (result.length === 0) {
         // 해당 아이디가 존재하지 않음
         console.log("if왔어요");
-        res
-          .status(401)
-          .json({ message: "유효하지 않은 아이디 또는 비밀번호 입니다" });
+        res.status(401).json({ message: "유효하지 않은 아이디 입니다" });
         return;
       }
       // pw는 로그인 할 때 입력한 암호화되지 않은 비밀번호
       // result[0].pw 암호화된 비밀번호
       let passwordMatch = bcrypt.compareSync(pw, result[0].pw);
+      console.log(pw.ty);
       if (!passwordMatch) {
         // 이메일은 맞지만 비밀번호가 틀렸을 경우
         console.log("pw왔어요");
-        res
-          .status(401)
-          .json({ message: "유효하지 않은 아이디 또는 비밀번호 입니다" });
+        res.status(401).json({ message: "유효하지 않은 비밀번호 입니다" });
         return;
       }
 
