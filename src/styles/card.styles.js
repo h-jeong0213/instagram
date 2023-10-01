@@ -89,8 +89,8 @@ export const PeedIMG = styled.img`
   display: flex;
   border-radius: 50%;
   /* background: url("../stitch2.png"); */
-  background-position: center;
-  background-size: cover;
+  /* background-position: center;
+  background-size: cover; */
   border: 3px solid pink;
 `;
 
@@ -221,14 +221,14 @@ export const HeartButton = styled.img`
   overflow: hidden;
 `;
 
-export const MiddlePickture = styled.div`
+export const MiddlePickture = styled.img`
   width: 30px;
   height: 30px;
   display: flex;
   border-radius: 50%;
-  background: url("../stitch2.png");
+  /* background: url("../stitch2.png");
   background-position: center;
-  background-size: cover;
+  background-size: cover; */
   border: 3px solid pink;
 `;
 export const MiddleText = styled.p`

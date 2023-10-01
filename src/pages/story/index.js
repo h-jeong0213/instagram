@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 const StoryPage = () => {
   const [posts, setPosts] = useState([]);
   const [users, setUsers] = useState([]);
-  const [postDB, setPostDB] = useState([]);
 
   useEffect(() => {
     axios.get("/api/posts").then((res) => {
@@ -18,10 +17,7 @@ const StoryPage = () => {
     axios.get("/api/users").then((res) => {
       setUsers(res.data);
     });
-    // setPostDB([...posts, ...users]);
   });
-
-  // console.log(postDB, [postDB]);
 
   return (
     <Container>
@@ -38,8 +34,8 @@ const StoryPage = () => {
               <NickName>이름1</NickName>
             </Stories>
           </StoryPeed>
-          {posts.map((posts, i) => {
-            return <CardContainer key={i} posts={posts} users={users} />;
+          {posts.map((posts) => {
+            return <CardContainer posts={posts} users={users} />;
           })}
         </LeftContainer>
         <RightContainer>

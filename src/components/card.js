@@ -46,7 +46,9 @@ const CardContainer = (props) => {
       <CardTitle>
         <CardLeft>
           <ImgWrap>
-            <PeedIMG url={posts.post_img}></PeedIMG>
+            <PeedIMG
+              src={users.find((user) => user.id === posts.id)?.profile_img}
+            ></PeedIMG>
           </ImgWrap>
           <div>
             <UserNickName>
@@ -89,7 +91,9 @@ const CardContainer = (props) => {
       </ButtonWrap>
       <TextWrap>
         <NiceNumberWrap>
-          <MiddlePickture></MiddlePickture>
+          <MiddlePickture
+            src={users.find((user) => user.id === posts.id)?.profile_img}
+          ></MiddlePickture>
           <MiddleText>좋아요 000개</MiddleText>
         </NiceNumberWrap>
         <ReviewWrap>
