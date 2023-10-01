@@ -32,6 +32,21 @@ const CardContainer = (props) => {
   const { posts, users } = props;
   const [isOpen, setIsOpen] = useState(false);
   const [isCommentOpen, setIsCommentOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const nextImage = () => {
+    // 다음 이미지로 이동
+    setCurrentImageIndex(
+      (prevIndex) => (prevIndex + 1) % posts.post_img.length
+    );
+  };
+
+  const prevImage = () => {
+    // 이전 이미지로 이동
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? posts.post_img.length - 1 : prevIndex - 1
+    );
+  };
 
   const onClickButton = () => {
     setIsOpen(true);
@@ -69,9 +84,19 @@ const CardContainer = (props) => {
         </Modal>
       </CardTitle>
       <ImgBox>
-        {posts.post_img.map((imgSrc, i) => (
+        {posts.post_img.length > 1 && (
+          <div>
+            <ImgBtn onClick={prevImage}>이전</ImgBtn>
+            <ImgBtn onClick={nextImage}>다음</ImgBtn>
+          </div>
+        )}
+        <ContentIMG
+          key={currentImageIndex}
+          src={posts.post_img[currentImageIndex]}
+        />
+        {/* {posts.post_img.map((imgSrc, i) => (
           <ContentIMG key={i} src={imgSrc} />
-        ))}
+        ))} */}
       </ImgBox>
       <ButtonWrap>
         <MiddleButtonWrap>
@@ -138,4 +163,9 @@ export const CommendModal = styled.div`
 
 export const ImgBox = styled.div`
   display: flex;
+  overflow: hidden;
+`;
+
+export const ImgBtn = styled.button`
+  position: absolute;
 `;
