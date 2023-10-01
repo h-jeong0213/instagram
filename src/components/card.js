@@ -66,7 +66,7 @@ const CardContainer = (props) => {
         </Modal>
       </CardTitle>
       <div>
-        <ContentIMG src={posts.post_img} width={600} height={600}></ContentIMG>
+        <ContentIMG src={posts.post_img}></ContentIMG>
       </div>
       <ButtonWrap>
         <MiddleButtonWrap>
