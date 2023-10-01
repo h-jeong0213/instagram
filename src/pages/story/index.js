@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 const StoryPage = () => {
   const [posts, setPosts] = useState([]);
   const [users, setUsers] = useState([]);
+  const [postDB, setPostDB] = useState([]);
 
   useEffect(() => {
     axios.get("/api/posts").then((res) => {
@@ -17,7 +18,10 @@ const StoryPage = () => {
     axios.get("/api/users").then((res) => {
       setUsers(res.data);
     });
+    // setPostDB([...posts, ...users]);
   });
+
+  // console.log(postDB, [postDB]);
 
   return (
     <Container>

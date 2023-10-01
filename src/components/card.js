@@ -30,7 +30,6 @@ import CommentModal from "./commentModal";
 
 const CardContainer = (props) => {
   const { posts, users } = props;
-  console.log(users);
   const [isOpen, setIsOpen] = useState(false);
   const [isCommentOpen, setIsCommentOpen] = useState(false);
 
@@ -50,7 +49,9 @@ const CardContainer = (props) => {
             <PeedIMG url={posts.post_img}></PeedIMG>
           </ImgWrap>
           <div>
-            <UserNickName>{posts.id}</UserNickName>
+            <UserNickName>
+              {users.find((user) => user.id === posts.id)?.user_name}
+            </UserNickName>
           </div>
         </CardLeft>
         <Modal>
@@ -93,7 +94,9 @@ const CardContainer = (props) => {
         </NiceNumberWrap>
         <ReviewWrap>
           <Review>
-            <MyNickName2>{posts.id}</MyNickName2>
+            <MyNickName2>
+              {users.find((user) => user.id === posts.id)?.user_name}
+            </MyNickName2>
             <Comments type="text" placeholder="댓글을 작성해주세요!"></Comments>
           </Review>
           <HeartButton src="heart (1).svg"></HeartButton>
