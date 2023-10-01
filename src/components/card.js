@@ -68,9 +68,11 @@ const CardContainer = (props) => {
           )}
         </Modal>
       </CardTitle>
-      <div>
-        <ContentIMG src={posts.post_img}></ContentIMG>
-      </div>
+      <ImgBox>
+        {posts.post_img.map((imgSrc, i) => (
+          <ContentIMG key={i} src={imgSrc} />
+        ))}
+      </ImgBox>
       <ButtonWrap>
         <MiddleButtonWrap>
           <MiddleButton src="heart (1).svg"></MiddleButton>
@@ -132,4 +134,8 @@ export const Modal = styled.div`
 
 export const CommendModal = styled.div`
   text-align: center;
+`;
+
+export const ImgBox = styled.div`
+  display: flex;
 `;
