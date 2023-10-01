@@ -2,8 +2,23 @@ import styled from "@emotion/styled";
 import NavMenu from "../../components/nav";
 import CardContainer from "../../components/card";
 import FriendPro from "../../components/FriendPro";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const StoryPage = () => {
+  const [posts, setPosts] = useState([]);
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    axios.get("/api/posts").then((res) => {
+      setPosts(res.data);
+    });
+
+    axios.get("/api/users").then((res) => {
+      setUsers(res.data);
+    });
+  });
+
   return (
     <Container>
       {/* Nav 구간 */}
@@ -19,7 +34,9 @@ const StoryPage = () => {
               <NickName>이름1</NickName>
             </Stories>
           </StoryPeed>
-          <CardContainer />
+          {posts.map((posts, i) => {
+            return <CardContainer key={i} posts={posts} users={users} />;
+          })}
         </LeftContainer>
         <RightContainer>
           <SideMyPro>

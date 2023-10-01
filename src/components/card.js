@@ -1,4 +1,4 @@
-import styled from '@emotion/styled'
+import styled from "@emotion/styled";
 import {
   Card,
   CardTitle,
@@ -23,31 +23,34 @@ import {
   Comments,
   HeartButton,
   BackDrop,
-} from '../styles/card.styles'
-import Modal1 from './modal'
-import { useState } from 'react'
-import CommentModal from './commentModal'
+} from "../styles/card.styles";
+import Modal1 from "./modal";
+import { useState } from "react";
+import CommentModal from "./commentModal";
 
-const CardContainer = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  const [isCommentOpen, setIsCommentOpen] = useState(false)
+const CardContainer = (props) => {
+  const { posts, users } = props;
+  console.log(users);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isCommentOpen, setIsCommentOpen] = useState(false);
 
   const onClickButton = () => {
-    setIsOpen(true)
-  }
+    setIsOpen(true);
+  };
 
   const onCommentButton = () => {
-    setIsCommentOpen(true)
-  }
+    setIsCommentOpen(true);
+  };
+
   return (
     <Card>
       <CardTitle>
         <CardLeft>
           <ImgWrap>
-            <PeedIMG></PeedIMG>
+            <PeedIMG url={posts.post_img}></PeedIMG>
           </ImgWrap>
           <div>
-            <UserNickName>nickname</UserNickName>
+            <UserNickName>{posts.id}</UserNickName>
           </div>
         </CardLeft>
         <Modal>
@@ -56,14 +59,14 @@ const CardContainer = () => {
             <Modal1
               open={isOpen}
               onClose={() => {
-                setIsOpen(false)
+                setIsOpen(false);
               }}
             />
           )}
         </Modal>
       </CardTitle>
       <div>
-        <ContentIMG src="../ST.jpg" width={600} height={600}></ContentIMG>
+        <ContentIMG src={posts.post_img} width={600} height={600}></ContentIMG>
       </div>
       <ButtonWrap>
         <MiddleButtonWrap>
@@ -74,7 +77,7 @@ const CardContainer = () => {
               <CommentModal
                 open={isCommentOpen}
                 onClose={() => {
-                  setIsCommentOpen(false)
+                  setIsCommentOpen(false);
                 }}
               ></CommentModal>
             )}
@@ -90,17 +93,17 @@ const CardContainer = () => {
         </NiceNumberWrap>
         <ReviewWrap>
           <Review>
-            <MyNickName2>닉네임</MyNickName2>
+            <MyNickName2>{posts.id}</MyNickName2>
             <Comments type="text" placeholder="댓글을 작성해주세요!"></Comments>
           </Review>
           <HeartButton src="heart (1).svg"></HeartButton>
         </ReviewWrap>
       </TextWrap>
     </Card>
-  )
-}
+  );
+};
 
-export default CardContainer
+export default CardContainer;
 
 export const OpenBtn = styled.button`
   font-size: 14px;
@@ -114,12 +117,12 @@ export const OpenBtn = styled.button`
   &:hover {
     color: red;
   }
-`
+`;
 
 export const Modal = styled.div`
   text-align: center;
-`
+`;
 
 export const CommendModal = styled.div`
   text-align: center;
-`
+`;
