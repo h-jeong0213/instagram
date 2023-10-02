@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 import {
   MainBox,
   LeftSection,
@@ -16,39 +16,42 @@ import {
   Forgot,
   SignUpPanel,
   Signup,
-} from "../../styles/signIn.styleds";
-import axios from "axios";
+} from '../../styles/signIn.styleds'
+import axios from 'axios'
+import { useRouter } from 'next/router'
 
 const SignInPage = () => {
-  const [user_idRef, setUser_idRef] = useState("");
-  const [pwRef, setPwRef] = useState("");
+  const router = useRouter()
+  const [user_idRef, setUser_idRef] = useState('')
+  const [pwRef, setPwRef] = useState('')
 
   const handleInputId = (e) => {
-    setUser_idRef(e.target.value);
-  };
+    setUser_idRef(e.target.value)
+  }
 
   const handleInputPw = (e) => {
-    setPwRef(e.target.value);
-  };
+    setPwRef(e.target.value)
+  }
 
   const onSignInClick = (e) => {
-    e.preventDefault();
-    console.log(user_idRef, pwRef);
+    e.preventDefault()
+    console.log(user_idRef, pwRef)
     axios
-      .post("/api/login", {
+      .post('/api/login', {
         user_id: user_idRef,
         pw: pwRef,
       })
       .then((res) => {
-        const userInfo = res.data.userInfo;
-        localStorage.setItem("user", JSON.stringify(userInfo));
+        const userInfo = res.data.userInfo
+        localStorage.setItem('user', JSON.stringify(userInfo))
+        router.push('./story')
       })
       .catch((err) => {
-        console.log(err);
-      });
+        console.log(err)
+      })
 
     // 어려워요....
-  };
+  }
 
   return (
     <>
@@ -100,7 +103,7 @@ const SignInPage = () => {
         </RightSection>
       </MainBox>
     </>
-  );
-};
+  )
+}
 
-export default SignInPage;
+export default SignInPage
