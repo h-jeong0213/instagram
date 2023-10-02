@@ -1,43 +1,47 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NavMenu from "../../components/nav";
 import axios from "axios";
 
 const ProfilPage = () => {
-  {
-    let [more, setMore] = useState(false);
-  }
-
-  let [tabs, setTabs] = useState(2);
-  let [activeTab, setActiveTab] = useState(0);
-  let [settingOn, setSettingon] = useState(false);
-  let tabMenu = [
+  const [tabs, setTabs] = useState(2);
+  const [activeTab, setActiveTab] = useState(0);
+  const [settingOn, setSettingon] = useState(false);
+  const tabMenu = [
     { id: 0, title: "게시물" },
     { id: 1, title: "릴스" },
     { id: 2, title: "저장 됨" },
     { id: 3, title: "태그 됨" },
   ];
+  const [user, setUser] = useState([]);
+  const [posts, setPosts] = useState([]);
+  let userPost = [];
 
-  axios.get("/api/login");
+  useEffect(() => {
+    axios.get("/api/posts").then((res) => {
+      setPosts(res.data);
+    });
+
+    if (typeof window !== "undefined") {
+      // 브라우저 환경인 경우에만 localStorage 사용
+      setUser(JSON.parse(localStorage.getItem("user")));
+    }
+  }, []);
+  userPost = posts.filter((post) => post.id === user.id);
+  console.log(userPost);
+  console.log(posts);
 
   function TabContent({ tabs }) {
     return [
       <UserContentInfo>
         {/* 유저 DB가 있다면 map함수로 반복문으로 처리 필요 */}
-        <UserContent>
-          <img src="./ST.jpg" />
-        </UserContent>
-        <UserContent>
-          <img src="./ST.jpg" />
-        </UserContent>
-        <UserContent>
-          <img src="./ST.jpg" />
-        </UserContent>
-        <UserContent>
-          <img src="./ST.jpg" />
-        </UserContent>
+        {userPost.map((userPost, i) => (
+          <UserContent>
+            <UserContentImg src={userPost.post_img[0]} />
+          </UserContent>
+        ))}
       </UserContentInfo>,
-      <UserContentInfo>릴스 내용</UserContentInfo>,
+      <UserContentInfo>릴스 내용 </UserContentInfo>,
       <UserContentInfo>저장 됨 내용</UserContentInfo>,
       <UserContentInfo>태그 됨 내용</UserContentInfo>,
     ][tabs];
@@ -53,12 +57,12 @@ const ProfilPage = () => {
       <ProfilContainer>
         <ProfilHeader>
           <ProfilImgBox>
-            <ProfilImg></ProfilImg>
+            <ProfilImg src={user.profile_img}></ProfilImg>
           </ProfilImgBox>
 
           <ProfilBox>
             <ProfilMainBox>
-              <UserName>username</UserName>
+              <UserName>{user.user_name}</UserName>
               <ProfilBtn>
                 <a>프로필 편집</a>
               </ProfilBtn>
@@ -76,7 +80,7 @@ const ProfilPage = () => {
               {/* 모달 버튼 */}
             </ProfilMainBox>
             <ProfilMainBox>
-              <ContentCount>게시물 00</ContentCount>
+              <ContentCount>게시물 {userPost.length}</ContentCount>
               <UserFriends>팔로워 00</UserFriends>
               <UserFriends>팔로우 00</UserFriends>
             </ProfilMainBox>
@@ -170,7 +174,7 @@ export const ProfilImg = styled.img`
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  background: url("stitch2.png");
+
   background-position: center;
   background-size: cover;
   &:hover {
@@ -352,4 +356,9 @@ export const UserContent = styled.div`
     cursor: pointer;
     filter: brightness(70%);
   }
+`;
+
+export const UserContentImg = styled.img`
+  width: 309px;
+  height: 309px;
 `;
