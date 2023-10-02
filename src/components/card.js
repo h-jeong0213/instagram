@@ -106,6 +106,7 @@ const CardContainer = (props) => {
           <ContentIMG key={i} src={imgSrc} />
         ))} */}
       </ImgBox>
+      <PoetContent>{posts.post_contents}</PoetContent>
       <ButtonWrap>
         <MiddleButtonWrap>
           <MiddleButton src="heart (1).svg"></MiddleButton>
@@ -174,4 +175,9 @@ export const ImgBox = styled.div`
 
 export const ImgBtn = styled.button`
   position: absolute;
+`;
+
+export const PoetContent = styled.p`
+  padding: 5px;
+  padding-left: 10px;
 `;
