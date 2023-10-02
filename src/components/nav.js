@@ -12,17 +12,20 @@ import {
   MoreCardItem,
   Alarm,
 } from "../styles/nav.styles";
+import { Router, useRouter } from "next/router";
 
 const NavMenu = () => {
   let [alarm, setAlarm] = useState(false);
   let [more, setMore] = useState(false);
   const [user, setUser] = useState([]);
+  const router = useRouter();
   useEffect(() => {
     if (typeof window !== "undefined") {
       // 브라우저 환경인 경우에만 localStorage 사용
       setUser(JSON.parse(localStorage.getItem("user")));
     }
   }, []);
+
   return (
     <>
       <Navbar>
@@ -34,7 +37,13 @@ const NavMenu = () => {
         <NavList>
           <NavItem>
             <NavSvg className="navImgBox" src="house-heart-fill.svg"></NavSvg>
-            <NavText>홈</NavText>
+            <NavText
+              onClick={() => {
+                router.push("./story");
+              }}
+            >
+              홈
+            </NavText>
           </NavItem>
           <NavItem>
             <NavSvg className="navImgBox" src="search-heart-fill.svg"></NavSvg>
@@ -63,7 +72,11 @@ const NavMenu = () => {
             <NavSvg className="navImgBox" src="plus-square.svg"></NavSvg>
             <NavText>만들기</NavText>
           </NavItem>
-          <NavItem>
+          <NavItem
+            onClick={() => {
+              router.push("./profil");
+            }}
+          >
             <MiniProfilImg
               src={user.profile_img}
               className="navImgBox"

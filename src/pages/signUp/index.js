@@ -19,7 +19,7 @@ const SignUpPage = () => {
 
   useEffect(() => {
     // 서버에서 데이터를 가져와 userIdDB를 업데이트합니다.
-    axios.get("/api/login").then((res) => {
+    axios.get("/api/users").then((res) => {
       const userIds = res.data.map((item) => item.user_id);
       setUserIdDB(userIds);
     });
@@ -139,7 +139,7 @@ const SignUpPage = () => {
   return (
     <BigContainer>
       <Container>
-        <image className="logo"></image>
+        <img src="instagram.png" className="logo"></img>
         <div>
           <SignUpTitle>
             친구들의 사진과 동영상을 보려면 <br />
