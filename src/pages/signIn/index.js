@@ -40,7 +40,9 @@ const SignInPage = () => {
         pw: pwRef,
       })
       .then((res) => {
-        console.log(res);
+        const user = res.data;
+        localStorage.setItem("user", JSON.stringify(user));
+        history.push("/story");
       })
       .catch((err) => {
         console.log(err);

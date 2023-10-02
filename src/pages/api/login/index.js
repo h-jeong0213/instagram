@@ -47,7 +47,10 @@ const handler = async (req, res) => {
       console.log(accessToken);
       console.log("토큰 왔어요");
 
-      res.status(200).json({ message: "로그인성공", accessToken: accessToken });
+      res.status(200).json({
+        accessToken: accessToken,
+        user: result[0],
+      });
     } catch (err) {
       console.log(err);
       console.log(process.env.JWT_SECRET);
