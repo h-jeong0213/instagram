@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from "react";
 import {
   Navbar,
   LogoBox,
@@ -11,11 +11,18 @@ import {
   MoreCard,
   MoreCardItem,
   Alarm,
-} from '../styles/nav.styles'
+} from "../styles/nav.styles";
 
 const NavMenu = () => {
-  let [alarm, setAlarm] = useState(false)
-  let [more, setMore] = useState(false)
+  let [alarm, setAlarm] = useState(false);
+  let [more, setMore] = useState(false);
+  const [user, setUser] = useState([]);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // 브라우저 환경인 경우에만 localStorage 사용
+      setUser(JSON.parse(localStorage.getItem("user")));
+    }
+  }, []);
   return (
     <>
       <Navbar>
@@ -46,7 +53,7 @@ const NavMenu = () => {
           </NavItem>
           <NavItem
             onClick={() => {
-              alarm == true ? setAlarm(!true) : setAlarm(true)
+              alarm == true ? setAlarm(!true) : setAlarm(true);
             }}
           >
             <NavSvg className="navImgBox" src="heart (1).svg"></NavSvg>
@@ -57,8 +64,11 @@ const NavMenu = () => {
             <NavText>만들기</NavText>
           </NavItem>
           <NavItem>
-            <MiniProfilImg className="navImgBox"></MiniProfilImg>
-            <NavText>프로필</NavText>
+            <MiniProfilImg
+              src={user.profile_img}
+              className="navImgBox"
+            ></MiniProfilImg>
+            <NavText>{user.user_name}</NavText>
           </NavItem>
           {more == true ? (
             <MoreCard>
@@ -69,7 +79,7 @@ const NavMenu = () => {
         <NavItem
           className="moreBox"
           onClick={() => {
-            more == true ? setMore(!true) : setMore(true)
+            more == true ? setMore(!true) : setMore(true);
           }}
         >
           <NavSvg className="navImgBox" src="list (1).svg"></NavSvg>
@@ -86,7 +96,7 @@ const NavMenu = () => {
         </div>
       </Alarm>
     </>
-  )
-}
+  );
+};
 
-export default NavMenu
+export default NavMenu;

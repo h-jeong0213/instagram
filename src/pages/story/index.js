@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 const StoryPage = () => {
   const [posts, setPosts] = useState([]);
   const [users, setUsers] = useState([]);
+  const [user, setUser] = useState([]);
 
   useEffect(() => {
     axios.get("/api/posts").then((res) => {
@@ -17,8 +18,14 @@ const StoryPage = () => {
     axios.get("/api/users").then((res) => {
       setUsers(res.data);
     });
-  });
 
+    if (typeof window !== "undefined") {
+      // 브라우저 환경인 경우에만 localStorage 사용
+      setUser(JSON.parse(localStorage.getItem("user")));
+    }
+  }, []); // 빈 의존성 배열을 설정하여 이펙트가 한 번만 실행되도록 합니다.
+
+  console.log(user);
   return (
     <Container>
       {/* Nav 구간 */}
@@ -40,8 +47,8 @@ const StoryPage = () => {
         </LeftContainer>
         <RightContainer>
           <SideMyPro>
-            <MyImg></MyImg>
-            <MyNickName>nickname</MyNickName>
+            <MyImg src={user.profile_img}></MyImg>
+            <MyNickName>{user.user_name}</MyNickName>
             <ChangeBtn>
               <a>전환</a>
             </ChangeBtn>
@@ -406,7 +413,6 @@ export const MyImg = styled.img`
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: url("stitch2.png");
   background-position: center;
   margin: 5px;
   background-size: cover;

@@ -49,7 +49,7 @@ const handler = async (req, res) => {
 
       res.status(200).json({
         accessToken: accessToken,
-        user: result[0],
+        userInfo: result[0],
       });
     } catch (err) {
       console.log(err);

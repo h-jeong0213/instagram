@@ -25,7 +25,7 @@ import {
   BackDrop,
 } from "../styles/card.styles";
 import Modal1 from "./modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CommentModal from "./commentModal";
 
 const CardContainer = (props) => {
@@ -33,6 +33,7 @@ const CardContainer = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isCommentOpen, setIsCommentOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [user, setUser] = useState([]);
 
   const nextImage = () => {
     // 다음 이미지로 이동
@@ -55,6 +56,13 @@ const CardContainer = (props) => {
   const onCommentButton = () => {
     setIsCommentOpen(true);
   };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // 브라우저 환경인 경우에만 localStorage 사용
+      setUser(JSON.parse(localStorage.getItem("user")));
+    }
+  }, []);
 
   return (
     <Card>
@@ -125,9 +133,7 @@ const CardContainer = (props) => {
         </NiceNumberWrap>
         <ReviewWrap>
           <Review>
-            <MyNickName2>
-              {users.find((user) => user.id === posts.id)?.user_name}
-            </MyNickName2>
+            <MyNickName2>{user.user_name}</MyNickName2>
             <Comments type="text" placeholder="댓글을 작성해주세요!"></Comments>
           </Review>
           <HeartButton src="heart (1).svg"></HeartButton>
