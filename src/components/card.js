@@ -90,16 +90,20 @@ const CardContainer = (props) => {
         </Modal>
       </CardTitle>
       <ImgBox>
-        {posts.post_img.length > 1 && (
-          <ImgBtnWrap2>
-            <prevBtn2 onClick={prevImage}>&lt;</prevBtn2>
-            <nextBtn2 onClick={nextImage}>&gt;</nextBtn2>
-          </ImgBtnWrap2>
-        )}
         <ContentIMG
           key={currentImageIndex}
           src={posts.post_img[currentImageIndex]}
-        />
+        ></ContentIMG>
+        {posts.post_img.length > 1 && (
+          <ImgBtnWrap2>
+            <prevBtn2 className="prevbutton" onClick={prevImage}>
+              &lt;
+            </prevBtn2>
+            <nextBtn2 className="nextbutton" onClick={nextImage}>
+              &gt;
+            </nextBtn2>
+          </ImgBtnWrap2>
+        )}
         {/* {posts.post_img.map((imgSrc, i) => (
           <ContentIMG key={i} src={imgSrc} />
         ))} */}
@@ -165,6 +169,7 @@ export const CommendModal = styled.div`
 `
 
 export const ImgBox = styled.div`
+  //border: 5px solid red;
   display: flex;
   overflow: hidden;
 `
@@ -178,26 +183,41 @@ export const PoetContent = styled.p`
   padding-left: 10px;
 `
 export const ImgBtnWrap2 = styled.div`
-  // border: 1px solid black;
-  width: 400px;
-  height: 40px;
-  z-index: 1;
+  width: 600px;
   position: absolute;
-  margin-top: 250px;
-  color: white;
-  font-size: 40px;
+  padding: 1px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 420px;
-`
+  grid-template-columns: 1fr auto 1fr;
+  margin-top: 300px;
 
+  @media screen and (max-width: 1000px) {
+    width: 58.5%;
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 58%;
+  }
+
+  .prevbutton {
+    // box-sizing: initial;
+    font-size: 15px;
+    position: absolute;
+    color: white;
+    left: 0;
+    grid-column: 1/2;
+    flex: 1;
+  }
+  .nextbutton {
+    font-size: 15px;
+    position: relative;
+    text-align: right;
+    color: white;
+    grid-column: 3/4;
+  }
+`
 export const prevBtn2 = styled.button`
-  // align-items: center;
-  position: absolute;
-  z-index: 1;
+  // text-align: right;
 `
 export const nextBtn2 = styled.button`
-  position: absolute;
-  z-index: 1;
-  //background-position: center;
+  // text-align: right;
 `

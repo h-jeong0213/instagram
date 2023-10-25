@@ -46,8 +46,12 @@ const CommentModal = (props) => {
           <CommentImgWrap>
             {posts.post_img.length > 1 && (
               <ImgBtnWrap>
-                <prevBtn onClick={prevImage}>&lt;</prevBtn>
-                <nextBtn onClick={nextImage}>&gt;</nextBtn>
+                <prevBtn className="PrevButton" onClick={prevImage}>
+                  &lt;
+                </prevBtn>
+                <nextBtn className="NextButton" onClick={nextImage}>
+                  &gt;
+                </nextBtn>
               </ImgBtnWrap>
             )}
             <StoryImg
@@ -286,42 +290,51 @@ export const ImgBtnWrap = styled.div`
   height: 40px;
   z-index: 1;
   position: absolute;
-  margin: auto;
-  color: red;
-  font-size: 40px;
+  padding: 0 4px;
   top: 45%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  //gap: 170px;
-  // box-sizing: border-box;
-  // overflow: hidden;
-  //justify-content: space-between;
-  // content-visibility: visible;
-  @media screen and (max-width: 1200px) {
-    width: 100%;
-    height: fit-content;
-    top: 50%;
-    left: 10%;
-    transform: translate(-20%, -50%);
+  grid-template-columns: 1fr auto 1fr;
+  @media screen and (max-width: 1000px), screen and (max-width: 800px) {
+    width: 58%;
+  }
+
+  @media screen and (max-width: 800px), screen and (max-width: 500px) {
+    //  padding: 0 1px;
+    // position: absolute;
+    width: 53.5%;
+  }
+  .PrevButton {
+    // box-sizing: initial;
+    font-size: 15px;
+    position: absolute;
+    color: red;
+    left: 0;
+    grid-column: 1/2;
+    flex: 1;
+  }
+  .NextButton {
+    font-size: 15px;
+    position: relative;
+    text-align: right;
+    color: red;
+    grid-column: 3/4;
   }
 `
 
 export const prevBtn = styled.button`
-  // border: 1px solid black;
-  position: relative;
-  //margin-right: 100px;
-  // overflow: hidden;
-  z-index: 1;
-  // left: 5px;
-  // transform: translate(0, -50%);
+  font-size: 15px;
+  position: absolute;
+  color: white;
+  left: 0;
+  grid-column: 1/2;
+  flex: 1;
 `
 export const nextBtn = styled.button`
   // border: 1px solid black;
-  position: relative;
+  // position: relative;
   //  overflow: hidden;
   // right: 0;
-  z-index: 1;
+  // z-index: 1;
   // transform: translate(0, -50%);
   //background-position: center;
 `
