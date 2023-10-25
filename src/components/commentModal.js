@@ -1,18 +1,42 @@
-import styled from "@emotion/styled";
-import { useRef, useState } from "react";
-import Modal1 from "./modal";
-import UserComment from "./userComment";
-import CommentFooter from "./CommentFooter";
+import styled from '@emotion/styled'
+import { useEffect, useRef, useState } from 'react'
+import Modal1 from './modal'
+import UserComment from './userComment'
+import CommentFooter from './CommentFooter'
 
-const CommentModal = ({ onClose }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const modalRef = useRef(null);
+const CommentModal = (props) => {
+  const { onClose } = props
+  const { posts, users } = props
+  const [user, setUser] = useState([])
+  const [isOpen, setIsOpen] = useState(false)
+  const modalRef = useRef(null)
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const handleClose = () => {
-    onClose?.();
-  };
+    onClose?.()
+  }
   const onClickButton = () => {
-    setIsOpen(true);
-  };
+    setIsOpen(true)
+  }
+
+  const nextImage = () => {
+    // 다음 이미지로 이동
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % posts.post_img.length)
+  }
+
+  const prevImage = () => {
+    // 이전 이미지로 이동
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? posts.post_img.length - 1 : prevIndex - 1,
+    )
+  }
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // 브라우저 환경인 경우에만 localStorage 사용
+      setUser(JSON.parse(localStorage.getItem('user')))
+    }
+  }, [])
 
   return (
     <Overlay>
@@ -20,23 +44,35 @@ const CommentModal = ({ onClose }) => {
         <openBtn onClick={handleClose}></openBtn>
         <Contents>
           <CommentImgWrap>
-            <StoryImg>이미지 넣을 공간</StoryImg>
+            {posts.post_img.length > 1 && (
+              <ImgBtnWrap>
+                <prevBtn onClick={prevImage}>&lt;</prevBtn>
+                <nextBtn onClick={nextImage}>&gt;</nextBtn>
+              </ImgBtnWrap>
+            )}
+            <StoryImg
+              key={currentImageIndex}
+              src={posts.post_img[currentImageIndex]}
+            ></StoryImg>
             <CommentWrap>
               <MyComment>
                 <ProfileImage2 className="profileImage">
                   <ImageBorder2 className="image-border"></ImageBorder2>
-                  <ProfileCanvas2 className="canvasProfileLove"></ProfileCanvas2>
+                  <ProfileCanvas2
+                    className="canvasProfileLove"
+                    src={user.profile_img}
+                  ></ProfileCanvas2>
                 </ProfileImage2>
                 <NickNameWrap>
-                  <NickName>my nickname</NickName>
+                  <NickName>{user.user_name}</NickName>
                 </NickNameWrap>
                 <Modal>
-                  <OpenBtn2 onClick={onClickButton}>+</OpenBtn2>
+                  <OpenButton2 onClick={onClickButton}>+</OpenButton2>
                   {isOpen && (
                     <Modal1
                       open={isOpen}
                       onClose={() => {
-                        setIsOpen(false);
+                        setIsOpen(false)
                       }}
                     />
                   )}
@@ -53,11 +89,10 @@ const CommentModal = ({ onClose }) => {
         </Contents>
       </ModalWrap>
     </Overlay>
-  );
-};
+  )
+}
 
-export default CommentModal;
-
+export default CommentModal
 export const Overlay = styled.div`
   position: fixed;
   width: 100%;
@@ -68,7 +103,7 @@ export const Overlay = styled.div`
   right: 0;
   background: rgba(0, 0, 0, 0.2);
   z-index: 9999;
-`;
+`
 
 export const ModalWrap = styled.div`
   width: 1200px;
@@ -89,7 +124,7 @@ export const ModalWrap = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
   }
-`;
+`
 
 export const openBtn = styled.div`
   float: right;
@@ -102,7 +137,7 @@ export const openBtn = styled.div`
     color: #5d5d5d;
     font-size: 30px;
   }
-`;
+`
 
 export const Contents = styled.div`
   margin: 5px;
@@ -112,7 +147,7 @@ export const Contents = styled.div`
     font-size: 600;
     margin-bottom: 50px;
   }
-`;
+`
 
 export const Button = styled.button`
   font-size: 14px;
@@ -128,24 +163,27 @@ export const Button = styled.button`
   &:hover {
     background-color: beige;
   }
-`;
+`
 
 export const Modal = styled.div`
   text-align: center;
   margin: 50px auto;
-`;
+`
 export const CommentImgWrap = styled.div`
   display: flex;
-`;
-export const StoryImg = styled.div`
+  // overflow: hidden;
+`
+export const StoryImg = styled.img`
   border: 1px solid black;
   border-radius: 15px;
   width: 500px;
   height: 600px;
   display: flex;
+  // overflow 임시
+  overflow: hidden;
   flex: 3;
   position: relative;
-`;
+`
 export const CommentWrap = styled.div`
   border: 1px solid black;
   width: 300px;
@@ -153,7 +191,7 @@ export const CommentWrap = styled.div`
   display: flex;
   flex: 2;
   flex-direction: column;
-`;
+`
 
 export const MyComment = styled.div`
   border-bottom: 1px solid gray;
@@ -162,7 +200,7 @@ export const MyComment = styled.div`
   box-sizing: border-box;
   height: 70px;
   width: 95%;
-`;
+`
 
 export const ProfileImage2 = styled.div`
   background-color: white;
@@ -173,19 +211,18 @@ export const ProfileImage2 = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
+`
 
-export const ProfileCanvas2 = styled.div`
+export const ProfileCanvas2 = styled.img`
   background-color: gray;
   width: 35px;
   height: 35px;
   border-radius: 50%;
   position: absolute;
 
-  background-image: url("../stitch2.png");
   background-size: cover;
   background-position: center;
-`;
+`
 
 export const ImageBorder2 = styled.div`
   width: 40px;
@@ -198,11 +235,11 @@ export const ImageBorder2 = styled.div`
   background-origin: border-box;
   background-clip: content-box, border-box;
   position: absolute;
-`;
+`
 
 export const NickNameWrap = styled.div`
   display: flex;
-`;
+`
 export const NickName = styled.p`
   height: 40px;
   margin-left: 3px;
@@ -211,8 +248,8 @@ export const NickName = styled.p`
   text-overflow: ellipsis;
   font-size: 15px;
   font-weight: 550;
-`;
-export const OpenBtn2 = styled.button`
+`
+export const OpenButton2 = styled.button`
   border: 1px solid black;
   position: fixed;
   top: 30px;
@@ -227,7 +264,7 @@ export const OpenBtn2 = styled.button`
   &:hover {
     color: red;
   }
-`;
+`
 
 export const UserCommentWrap = styled.div`
   // border: 1px solid black;
@@ -242,4 +279,49 @@ export const UserCommentWrap = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-`;
+`
+export const ImgBtnWrap = styled.div`
+  border: 1px solid black;
+  width: 710px;
+  height: 40px;
+  z-index: 1;
+  position: absolute;
+  margin: auto;
+  color: red;
+  font-size: 40px;
+  top: 45%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  //gap: 170px;
+  // box-sizing: border-box;
+  // overflow: hidden;
+  //justify-content: space-between;
+  // content-visibility: visible;
+  @media screen and (max-width: 1200px) {
+    width: 100%;
+    height: fit-content;
+    top: 50%;
+    left: 10%;
+    transform: translate(-20%, -50%);
+  }
+`
+
+export const prevBtn = styled.button`
+  // border: 1px solid black;
+  position: relative;
+  //margin-right: 100px;
+  // overflow: hidden;
+  z-index: 1;
+  // left: 5px;
+  // transform: translate(0, -50%);
+`
+export const nextBtn = styled.button`
+  // border: 1px solid black;
+  position: relative;
+  //  overflow: hidden;
+  // right: 0;
+  z-index: 1;
+  // transform: translate(0, -50%);
+  //background-position: center;
+`

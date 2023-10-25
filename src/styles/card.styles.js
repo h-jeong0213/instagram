@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled'
 
 export const StoryPeed = styled.div`
   border: 1px solid gray;
@@ -18,18 +18,18 @@ export const StoryPeed = styled.div`
   ::-webkit-scrollbar {
     display: none;
   }
-`;
+`
 
 export const IpBtn = styled.p`
   position: fixed;
   font-weight: bold;
   font-size: 20px;
   width: 30px;
-`;
+`
 
 export const Stories = styled.div`
   width: 8%;
-`;
+`
 
 export const IMG = styled.img`
   //  border-radius: 50%;
@@ -42,11 +42,11 @@ export const IMG = styled.img`
   height: 60px;
   display: flex;
   border-radius: 50%;
-  background: url("../stitch2.png");
+  background: url('../stitch2.png');
   background-position: center;
   background-size: cover;
   border: 3px solid pink;
-`;
+`
 
 export const NickName = styled.p`
   width: 90%;
@@ -56,7 +56,7 @@ export const NickName = styled.p`
   color: gray;
   font-size: 12px;
   text-align: center;
-`;
+`
 
 export const Card = styled.div`
   margin: 20px 140px;
@@ -64,7 +64,7 @@ export const Card = styled.div`
   background-color: white;
   border: 1px solid gray;
   border-radius: 5px;
-`;
+`
 
 export const CardTitle = styled.div`
   display: flex;
@@ -72,16 +72,16 @@ export const CardTitle = styled.div`
   align-items: center;
   padding: 5px 10px;
   border-bottom: 1px solid gray;
-`;
+`
 
 export const CardLeft = styled.div`
   display: flex;
   align-items: center;
-`;
+`
 
 export const ImgWrap = styled.div`
   margin-right: 15px;
-`;
+`
 
 export const PeedIMG = styled.img`
   width: 40px;
@@ -92,41 +92,41 @@ export const PeedIMG = styled.img`
   /* background-position: center;
   background-size: cover; */
   border: 3px solid pink;
-`;
+`
 
 export const UserNickName = styled.p`
   padding-bottom: 1px;
   font-weight: bold;
-`;
+`
 
 export const ContentIMG = styled.img`
   width: 100%;
   height: 600px;
   object-fit: cover;
-`;
+`
 
 export const Footer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 16px;
-`;
+`
 
 export const AllBtn = styled.i`
   font-size: 22px;
   margin-right: 10px;
-`;
+`
 
 export const Save = styled.div`
   font-size: 22px;
-`;
+`
 
 export const FooterContent = styled.div`
   padding: 0 16px 16px 16px;
-`;
+`
 
 export const FooterPTag = styled.p`
   margin-bottom: 3px;
-`;
+`
 
 export const ButtonWrap = styled.div`
   justify-content: space-between;
@@ -134,13 +134,13 @@ export const ButtonWrap = styled.div`
   height: 50px;
   box-sizing: border-box;
   padding: 5px;
-`;
+`
 
 export const TextWrap = styled.div`
   border-top: 1px solid gray;
   box-sizing: border-box;
   width: 100%;
-`;
+`
 
 export const NiceNumberWrap = styled.div`
   width: 100%;
@@ -151,7 +151,7 @@ export const NiceNumberWrap = styled.div`
   padding-left: 9px;
   display: flex;
   align-items: center;
-`;
+`
 
 export const ReviewWrap = styled.div`
   width: 100%;
@@ -162,14 +162,14 @@ export const ReviewWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`;
+`
 
 export const Review = styled.div`
   width: 90%;
   box-sizing: border-box;
 
   display: flex;
-`;
+`
 
 export const MiddleButtonWrap = styled.div`
   width: 80%;
@@ -177,7 +177,7 @@ export const MiddleButtonWrap = styled.div`
   // position: relative;
   display: flex;
   box-sizing: border-box;
-`;
+`
 
 export const MiddleButton = styled.img`
   margin-left: 5px;
@@ -186,7 +186,7 @@ export const MiddleButton = styled.img`
   box-sizing: border-box;
   display: inline-block;
   overflow: hidden;
-`;
+`
 export const MiddleButton2 = styled.div`
   margin-left: 5px;
   width: 30px;
@@ -194,11 +194,11 @@ export const MiddleButton2 = styled.div`
   box-sizing: border-box;
   display: flex;
   overflow: hidden;
-  background-image: url("../balloon.svg");
+  background-image: url('../balloon.svg');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-`;
+`
 
 export const SaveButton = styled.img`
   margin-right: 5px;
@@ -209,7 +209,7 @@ export const SaveButton = styled.img`
   display: inline-block;
   text-align: center;
   overflow: hidden;
-`;
+`
 
 export const HeartButton = styled.img`
   margin-right: 5px;
@@ -219,7 +219,7 @@ export const HeartButton = styled.img`
   display: inline-block;
   text-align: center;
   overflow: hidden;
-`;
+`
 
 export const MiddlePickture = styled.img`
   width: 30px;
@@ -230,7 +230,7 @@ export const MiddlePickture = styled.img`
   background-position: center;
   background-size: cover; */
   border: 3px solid pink;
-`;
+`
 export const MiddleText = styled.p`
   font-weight: 200;
   position: inherit;
@@ -241,7 +241,7 @@ export const MiddleText = styled.p`
   font-weight: 500;
   margin-top: 35px;
   margin-left: 10px;
-`;
+`
 export const MyNickName2 = styled.p`
   margin-left: 10px;
   font-size: 15px;
@@ -249,7 +249,7 @@ export const MyNickName2 = styled.p`
   height: 30px;
   margin-right: 10px;
   box-sizing: border-box;
-`;
+`
 
 export const Comments = styled.input`
   box-sizing: border-box;
@@ -258,4 +258,4 @@ export const Comments = styled.input`
   height: 40px;
   &:hover {
   }
-`;
+`

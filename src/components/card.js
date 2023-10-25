@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled'
 import {
   Card,
   CardTitle,
@@ -23,46 +23,44 @@ import {
   Comments,
   HeartButton,
   BackDrop,
-} from "../styles/card.styles";
-import Modal1 from "./modal";
-import { useEffect, useState } from "react";
-import CommentModal from "./commentModal";
+} from '../styles/card.styles'
+import Modal1 from './modal'
+import { useEffect, useState } from 'react'
+import CommentModal from './commentModal'
 
 const CardContainer = (props) => {
-  const { posts, users } = props;
-  const [isOpen, setIsOpen] = useState(false);
-  const [isCommentOpen, setIsCommentOpen] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [user, setUser] = useState([]);
+  const { posts, users } = props
+  const [isOpen, setIsOpen] = useState(false)
+  const [isCommentOpen, setIsCommentOpen] = useState(false)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [user, setUser] = useState([])
 
   const nextImage = () => {
     // 다음 이미지로 이동
-    setCurrentImageIndex(
-      (prevIndex) => (prevIndex + 1) % posts.post_img.length
-    );
-  };
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % posts.post_img.length)
+  }
 
   const prevImage = () => {
     // 이전 이미지로 이동
     setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? posts.post_img.length - 1 : prevIndex - 1
-    );
-  };
+      prevIndex === 0 ? posts.post_img.length - 1 : prevIndex - 1,
+    )
+  }
 
   const onClickButton = () => {
-    setIsOpen(true);
-  };
+    setIsOpen(true)
+  }
 
   const onCommentButton = () => {
-    setIsCommentOpen(true);
-  };
+    setIsCommentOpen(true)
+  }
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== 'undefined') {
       // 브라우저 환경인 경우에만 localStorage 사용
-      setUser(JSON.parse(localStorage.getItem("user")));
+      setUser(JSON.parse(localStorage.getItem('user')))
     }
-  }, []);
+  }, [])
 
   return (
     <Card>
@@ -80,12 +78,12 @@ const CardContainer = (props) => {
           </div>
         </CardLeft>
         <Modal>
-          <OpenBtn onClick={onClickButton}>+</OpenBtn>
+          <OpenButton onClick={onClickButton}>+</OpenButton>
           {isOpen && (
             <Modal1
               open={isOpen}
               onClose={() => {
-                setIsOpen(false);
+                setIsOpen(false)
               }}
             />
           )}
@@ -93,10 +91,10 @@ const CardContainer = (props) => {
       </CardTitle>
       <ImgBox>
         {posts.post_img.length > 1 && (
-          <div>
-            <ImgBtn onClick={prevImage}>이전</ImgBtn>
-            <ImgBtn onClick={nextImage}>다음</ImgBtn>
-          </div>
+          <ImgBtnWrap2>
+            <prevBtn2 onClick={prevImage}>&lt;</prevBtn2>
+            <nextBtn2 onClick={nextImage}>&gt;</nextBtn2>
+          </ImgBtnWrap2>
         )}
         <ContentIMG
           key={currentImageIndex}
@@ -115,8 +113,10 @@ const CardContainer = (props) => {
             {isCommentOpen && (
               <CommentModal
                 open={isCommentOpen}
+                users={users}
+                posts={posts}
                 onClose={() => {
-                  setIsCommentOpen(false);
+                  setIsCommentOpen(false)
                 }}
               ></CommentModal>
             )}
@@ -141,12 +141,12 @@ const CardContainer = (props) => {
         </ReviewWrap>
       </TextWrap>
     </Card>
-  );
-};
+  )
+}
 
-export default CardContainer;
+export default CardContainer
 
-export const OpenBtn = styled.button`
+export const OpenButton = styled.button`
   font-size: 14px;
   padding: 10px 20px;
   border: none;
@@ -154,30 +154,50 @@ export const OpenBtn = styled.button`
   font-weight: 200;
   cursor: pointer;
   border-style: none;
-
-  &:hover {
-    color: red;
-  }
-`;
+`
 
 export const Modal = styled.div`
   text-align: center;
-`;
+`
 
 export const CommendModal = styled.div`
   text-align: center;
-`;
+`
 
 export const ImgBox = styled.div`
   display: flex;
   overflow: hidden;
-`;
+`
 
 export const ImgBtn = styled.button`
   position: absolute;
-`;
+`
 
 export const PoetContent = styled.p`
   padding: 5px;
   padding-left: 10px;
-`;
+`
+export const ImgBtnWrap2 = styled.div`
+  // border: 1px solid black;
+  width: 400px;
+  height: 40px;
+  z-index: 1;
+  position: absolute;
+  margin-top: 250px;
+  color: white;
+  font-size: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 420px;
+`
+
+export const prevBtn2 = styled.button`
+  // align-items: center;
+  position: absolute;
+  z-index: 1;
+`
+export const nextBtn2 = styled.button`
+  position: absolute;
+  z-index: 1;
+  //background-position: center;
+`

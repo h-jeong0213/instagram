@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from 'react'
 import {
   Navbar,
   LogoBox,
@@ -11,27 +11,44 @@ import {
   MoreCard,
   MoreCardItem,
   Alarm,
-} from "../styles/nav.styles";
-import { Router, useRouter } from "next/router";
+} from '../styles/nav.styles'
+import { Router, useRouter } from 'next/router'
+import { UserContext } from '../pages/api/util/UserContext'
+import { useMoveToPage } from './hook/useMoveToPage'
 
 const NavMenu = () => {
-  let [alarm, setAlarm] = useState(false);
-  let [more, setMore] = useState(false);
-  const [user, setUser] = useState([]);
-  const router = useRouter();
+  const { users, accessToken, setUsers, setAccessToken } = useContext(
+    UserContext,
+  )
+
+  let [alarm, setAlarm] = useState(false)
+  let [more, setMore] = useState(false)
+  const [user, setUser] = useState([])
+  const router = useRouter()
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== 'undefined') {
       // 브라우저 환경인 경우에만 localStorage 사용
-      setUser(JSON.parse(localStorage.getItem("user")));
+      setUser(JSON.parse(localStorage.getItem('user'))) //user
     }
-  }, []);
+  }, [])
+
+  const { onClickMoveToPage } = useMoveToPage()
+
+  const onLogoutClick = () => {
+    localStorage.removeItem('user')
+    setAccessToken('')
+    onClickMoveToPage('/')
+  }
 
   return (
     <>
       <Navbar>
         <LogoBox>
           <a>
-            <LogoImg src="../instagram.png"></LogoImg>
+            <LogoImg
+              src="../instagram.png"
+              onClick={onClickMoveToPage('/story')}
+            ></LogoImg>
           </a>
         </LogoBox>
         <NavList>
@@ -39,7 +56,7 @@ const NavMenu = () => {
             <NavSvg className="navImgBox" src="house-heart-fill.svg"></NavSvg>
             <NavText
               onClick={() => {
-                router.push("./story");
+                router.push('./story')
               }}
             >
               홈
@@ -62,7 +79,7 @@ const NavMenu = () => {
           </NavItem>
           <NavItem
             onClick={() => {
-              alarm == true ? setAlarm(!true) : setAlarm(true);
+              alarm == true ? setAlarm(!true) : setAlarm(true)
             }}
           >
             <NavSvg className="navImgBox" src="heart (1).svg"></NavSvg>
@@ -74,7 +91,7 @@ const NavMenu = () => {
           </NavItem>
           <NavItem
             onClick={() => {
-              router.push("./profil");
+              router.push('./profil')
             }}
           >
             <MiniProfilImg
@@ -85,14 +102,18 @@ const NavMenu = () => {
           </NavItem>
           {more == true ? (
             <MoreCard>
-              <MoreCardItem>로그아웃</MoreCardItem>
+              <MoreCardItem onClick={onClickMoveToPage('/signIn')}>
+                {user ? onLogoutClick : onClickMoveToPage('/signIn')}
+                {user ? '로그아웃' : '로그인'}
+                {/* 로그아웃 */}
+              </MoreCardItem>
             </MoreCard>
           ) : null}
         </NavList>
         <NavItem
           className="moreBox"
           onClick={() => {
-            more == true ? setMore(!true) : setMore(true);
+            more == true ? setMore(!true) : setMore(true)
           }}
         >
           <NavSvg className="navImgBox" src="list (1).svg"></NavSvg>
@@ -109,7 +130,7 @@ const NavMenu = () => {
         </div>
       </Alarm>
     </>
-  );
-};
+  )
+}
 
-export default NavMenu;
+export default NavMenu

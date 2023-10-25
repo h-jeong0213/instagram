@@ -1,31 +1,34 @@
-import styled from "@emotion/styled";
-import NavMenu from "../../components/nav";
-import CardContainer from "../../components/card";
-import FriendPro from "../../components/FriendPro";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import styled from '@emotion/styled'
+import NavMenu from '../../components/nav'
+import CardContainer from '../../components/card'
+import FriendPro from '../../components/FriendPro'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import { withAuth } from '../../components/hoc/withauth'
+import UserPeed from '../../components/peed'
 
 const StoryPage = () => {
-  const [posts, setPosts] = useState([]);
-  const [users, setUsers] = useState([]);
-  const [user, setUser] = useState([]);
+  const [posts, setPosts] = useState([])
+  const [users, setUsers] = useState([])
+  const [comments, setComments] = useState([])
+  const [user, setUser] = useState([])
+  //const [accessToken, setAccessToken] = useState([])
 
   useEffect(() => {
-    axios.get("/api/posts").then((res) => {
-      setPosts(res.data);
-    });
+    axios.get('/api/posts').then((res) => {
+      setPosts(res.data)
+    })
 
-    axios.get("/api/users").then((res) => {
-      setUsers(res.data);
-    });
+    axios.get('/api/users').then((res) => {
+      setUsers(res.data)
+    })
 
-    if (typeof window !== "undefined") {
+    if (typeof window !== 'undefined') {
       // 브라우저 환경인 경우에만 localStorage 사용
-      setUser(JSON.parse(localStorage.getItem("user")));
+      setUser(JSON.parse(localStorage.getItem('user')))
     }
-  }, []); // 빈 의존성 배열을 설정하여 이펙트가 한 번만 실행되도록 합니다.
+  }, []) // 빈 의존성 배열을 설정하여 이펙트가 한 번만 실행되도록 합니다.
 
-  console.log(user);
   return (
     <Container>
       {/* Nav 구간 */}
@@ -33,16 +36,12 @@ const StoryPage = () => {
       <MainContainer>
         <LeftContainer>
           <StoryPeed>
-            <Stories>
-              <ProfileImage className="profileImage">
-                <ImageBorder className="image-border"></ImageBorder>
-                <ProfileCanvas className="canvasProfileLove"></ProfileCanvas>
-              </ProfileImage>
-              <NickName>이름1</NickName>
-            </Stories>
+            {users.map((users) => {
+              return <UserPeed posts={posts} users={users} />
+            })}
           </StoryPeed>
           {posts.map((posts) => {
-            return <CardContainer posts={posts} users={users} />;
+            return <CardContainer posts={posts} users={users} />
           })}
         </LeftContainer>
         <RightContainer>
@@ -63,17 +62,18 @@ const StoryPage = () => {
         </RightContainer>
       </MainContainer>
     </Container>
-  );
-};
+  )
+}
 
-export default StoryPage;
+export default withAuth(StoryPage)
+
 // 전체 Container
 
 export const Container = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-`;
+`
 
 export const MainContainer = styled.div`
   /* margin-left: 150px; */
@@ -81,7 +81,7 @@ export const MainContainer = styled.div`
   display: flex;
   justify-items: center;
   justify-content: center;
-`;
+`
 
 export const LeftContainer = styled.section`
   /* position: absolute; */
@@ -97,7 +97,7 @@ export const LeftContainer = styled.section`
   ::-webkit-scrollbar {
     display: none;
   }
-`;
+`
 
 export const StoryPeed = styled.div`
   border: 1px solid gray;
@@ -111,12 +111,13 @@ export const StoryPeed = styled.div`
 
   overflow-y: hidden;
   overflow-x: scroll;
-`;
+`
+
 export const Stories = styled.div`
   width: 10%;
   box-sizing: border-box;
   position: relative;
-`;
+`
 
 export const ProfileImage = styled.div`
   background-color: white;
@@ -127,19 +128,19 @@ export const ProfileImage = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
+`
 
-export const ProfileCanvas = styled.div`
+export const ProfileCanvas = styled.img`
   background-color: gray;
   width: 45px;
   height: 45px;
   border-radius: 50%;
   position: absolute;
 
-  background-image: url("../stitch2.png");
+  //background-image: url('../stitch2.png');
   background-size: cover;
   background-position: center;
-`;
+`
 
 export const ProfileName = styled.a`
   background-color: white;
@@ -148,7 +149,7 @@ export const ProfileName = styled.a`
   font-size: 8px;
   text-align: center;
   margin-left: 15px;
-`;
+`
 
 export const ImageBorder = styled.div`
   width: 50px;
@@ -161,13 +162,13 @@ export const ImageBorder = styled.div`
   background-origin: border-box;
   background-clip: content-box, border-box;
   position: absolute;
-`;
+`
 
 export const IpBtn = styled.p`
   font-weight: bold;
   font-size: 20px;
   width: 30px;
-`;
+`
 
 export const IMG = styled.img`
   //  border-radius: 50%;
@@ -180,11 +181,11 @@ export const IMG = styled.img`
   height: 60px;
   display: flex;
   border-radius: 50%;
-  background: url("../stitch2.png");
+  background: url('../stitch2.png');
   background-position: center;
   background-size: cover;
   border: 3px solid pink;
-`;
+`
 
 export const NickName = styled.p`
   //border: 1px solid black;
@@ -195,7 +196,7 @@ export const NickName = styled.p`
   color: gray;
   font-size: 12px;
   text-align: center;
-`;
+`
 
 export const Card = styled.div`
   margin: 20px 100px;
@@ -203,7 +204,7 @@ export const Card = styled.div`
   background-color: white;
   border: 1px solid gray;
   border-radius: 5px;
-`;
+`
 
 export const CardTitle = styled.div`
   display: flex;
@@ -211,61 +212,61 @@ export const CardTitle = styled.div`
   align-items: center;
   padding: 5px 10px;
   border-bottom: 1px solid gray;
-`;
+`
 
 export const CardLeft = styled.div`
   display: flex;
   align-items: center;
-`;
+`
 
 export const ImgWrap = styled.div`
   margin-right: 15px;
-`;
+`
 
 export const PeedIMG = styled.img`
   width: 40px;
   height: 40px;
   display: flex;
   border-radius: 50%;
-  background: url("../stitch2.png");
+  background: url('../stitch2.png');
   background-position: center;
   background-size: cover;
   border: 3px solid pink;
-`;
+`
 
 export const UserNickName = styled.p`
   padding-bottom: 1px;
   font-weight: bold;
-`;
+`
 
 export const ContentIMG = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-`;
+`
 
 export const Footer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 16px;
-`;
+`
 
 export const AllBtn = styled.i`
   font-size: 22px;
   margin-right: 10px;
-`;
+`
 
 export const Save = styled.div`
   font-size: 22px;
-`;
+`
 
 export const FooterContent = styled.div`
   padding: 0 16px 16px 16px;
-`;
+`
 
 export const FooterPTag = styled.p`
   margin-bottom: 3px;
-`;
+`
 
 export const ButtonWrap = styled.div`
   justify-content: space-between;
@@ -273,13 +274,13 @@ export const ButtonWrap = styled.div`
   height: 50px;
   box-sizing: border-box;
   padding: 5px;
-`;
+`
 
 export const TextWrap = styled.div`
   border-top: 1px solid gray;
   box-sizing: border-box;
   width: 100%;
-`;
+`
 
 export const NiceNumberWrap = styled.div`
   width: 100%;
@@ -290,7 +291,7 @@ export const NiceNumberWrap = styled.div`
   padding-left: 9px;
   display: flex;
   align-items: center;
-`;
+`
 
 export const ReviewWrap = styled.div`
   width: 100%;
@@ -301,21 +302,21 @@ export const ReviewWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`;
+`
 
 export const Review = styled.div`
   width: 90%;
   box-sizing: border-box;
 
   display: flex;
-`;
+`
 
 export const MiddleButtonWrap = styled.div`
   width: 80%;
   height: 100%;
   position: relative;
   box-sizing: border-box;
-`;
+`
 
 export const MiddleButton = styled.img`
   margin-left: 5px;
@@ -324,7 +325,7 @@ export const MiddleButton = styled.img`
   box-sizing: border-box;
   display: inline-block;
   overflow: hidden;
-`;
+`
 
 export const SaveButton = styled.img`
   margin-right: 5px;
@@ -334,7 +335,7 @@ export const SaveButton = styled.img`
   display: inline-block;
   text-align: center;
   overflow: hidden;
-`;
+`
 
 export const HeartButton = styled.img`
   margin-right: 5px;
@@ -344,18 +345,18 @@ export const HeartButton = styled.img`
   display: inline-block;
   text-align: center;
   overflow: hidden;
-`;
+`
 
 export const MiddlePickture = styled.div`
   width: 30px;
   height: 30px;
   display: flex;
   border-radius: 50%;
-  background: url("../stitch2.png");
+  background: url('../stitch2.png');
   background-position: center;
   background-size: cover;
   border: 3px solid pink;
-`;
+`
 export const MiddleText = styled.p`
   position: inherit;
   width: 85%;
@@ -366,7 +367,7 @@ export const MiddleText = styled.p`
   border: 1px solid black;
   margin-top: 30px;
   margin-left: 10px;
-`;
+`
 export const MyNickName2 = styled.p`
   margin-left: 10px;
   font-size: 15px;
@@ -374,14 +375,14 @@ export const MyNickName2 = styled.p`
   height: 30px;
   margin-right: 10px;
   box-sizing: border-box;
-`;
+`
 
 export const Comments = styled.input`
   box-sizing: border-box;
   margin-top: 9px;
   width: 70%;
   height: 40px;
-`;
+`
 
 export const RightContainer = styled.section`
   border: 1px solid gray;
@@ -399,14 +400,14 @@ export const RightContainer = styled.section`
   @media screen and (max-width: 1270px) {
     display: none;
   }
-`;
+`
 
 export const SideMyPro = styled.div`
   border-bottom: 1px solid black;
   width: 100%;
   height: 15%;
   box-sizing: border-box;
-`;
+`
 export const MyImg = styled.img`
   float: left;
   display: inline-block;
@@ -420,7 +421,7 @@ export const MyImg = styled.img`
     cursor: pointer;
   }
   border: 1px solid rgba(0, 0, 0, 0.25);
-`;
+`
 
 export const MyNickName = styled.div`
   display: inline-block;
@@ -431,7 +432,7 @@ export const MyNickName = styled.div`
   width: 70%;
   height: 40px;
   font-weight: 500;
-`;
+`
 
 export const ChangeBtn = styled.div`
   display: inline-block;
@@ -449,7 +450,7 @@ export const ChangeBtn = styled.div`
       color: blue;
     }
   }
-`;
+`
 
 export const RecommendWrap = styled.div`
   border-bottom: 1px solid black;
@@ -457,7 +458,7 @@ export const RecommendWrap = styled.div`
   height: 8%;
   box-sizing: border-box;
   margin-top: 3px;
-`;
+`
 export const Recommend = styled.div`
   //border: 1px solid black;
   display: inline-block;
@@ -470,7 +471,7 @@ export const Recommend = styled.div`
   font-weight: bold;
   color: grey;
   float: left;
-`;
+`
 
 export const AllViewBtn = styled.div`
   // border: 1px solid black;
@@ -491,4 +492,4 @@ export const AllViewBtn = styled.div`
       color: black;
     }
   }
-`;
+`

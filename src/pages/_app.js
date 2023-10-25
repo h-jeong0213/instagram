@@ -1,7 +1,11 @@
+import { UserContextProvider } from './api/util/UserContext'
+
 export default function App({ Component, pageProps }) {
   return (
     <>
-      <Component {...pageProps} />
+      <UserContextProvider>
+        <Component {...pageProps} />
+      </UserContextProvider>
     </>
-  );
+  )
 }
