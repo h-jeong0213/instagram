@@ -285,7 +285,7 @@ export const UserCommentWrap = styled.div`
   }
 `
 export const ImgBtnWrap = styled.div`
-  border: 1px solid black;
+  // border: 1px solid black;
   width: 710px;
   height: 40px;
   z-index: 1;
@@ -294,15 +294,22 @@ export const ImgBtnWrap = styled.div`
   top: 45%;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  @media screen and (max-width: 1000px), screen and (max-width: 800px) {
+  @media screen and (max-width: 1000px), screen and (max-width: 900px) {
     width: 58%;
   }
-
-  @media screen and (max-width: 800px), screen and (max-width: 500px) {
-    //  padding: 0 1px;
-    // position: absolute;
+  @media screen and (max-width: 900px), screen and (max-width: 800px) {
+    width: 58%;
+  }
+  @media screen and (max-width: 800px), screen and (max-width: 700px) {
     width: 53.5%;
   }
+  @media screen and (max-width: 700px), screen and (max-width: 600px) {
+    width: 53.5%;
+  }
+  @media screen and (max-width: 600px), screen and (max-width: 500px) {
+    width: 53.5%;
+  }
+
   .PrevButton {
     // box-sizing: initial;
     font-size: 15px;

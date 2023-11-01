@@ -17,9 +17,9 @@ import { UserContext } from '../pages/api/util/UserContext'
 import { useMoveToPage } from './hook/useMoveToPage'
 
 const NavMenu = () => {
-  const { users, accessToken, setUsers, setAccessToken } = useContext(
-    UserContext,
-  )
+  //const { users, accessToken, setUsers, setAccessToken } = useContext(
+  //  UserContext,
+  // )
 
   let [alarm, setAlarm] = useState(false)
   let [more, setMore] = useState(false)
