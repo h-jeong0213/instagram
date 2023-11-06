@@ -10,6 +10,7 @@ import UserPeed from '../../components/peed'
 const StoryPage = () => {
   const [posts, setPosts] = useState([])
   const [users, setUsers] = useState([])
+  //const [likes, setLikes] = useState(false)
   const [comments, setComments] = useState([])
   const [user, setUser] = useState([])
   //const [accessToken, setAccessToken] = useState([])
@@ -58,7 +59,7 @@ const StoryPage = () => {
               <a>모두 보기</a>
             </AllViewBtn>
           </RecommendWrap>
-          <FriendPro></FriendPro>
+          <FriendPro posts={posts} users={users}></FriendPro>
         </RightContainer>
       </MainContainer>
     </Container>

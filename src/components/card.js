@@ -27,9 +27,12 @@ import {
 import Modal1 from './modal'
 import { useEffect, useState } from 'react'
 import CommentModal from './commentModal'
+import axios from 'axios'
+import { useRouter } from 'next/router'
 
 const CardContainer = (props) => {
   const { posts, users } = props
+  // const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const [isCommentOpen, setIsCommentOpen] = useState(false)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
@@ -55,12 +58,27 @@ const CardContainer = (props) => {
     setIsCommentOpen(true)
   }
 
+  // 좋아요 갯수..
+  const [num, setNum] = useState(0)
+  const [likes, setLikes] = useState(false)
+  const clickLikes = () => {
+    if (likes) {
+      setLikes(false)
+      setNum(num - 1)
+    } else {
+      setLikes(true)
+      setNum(num + 1)
+    }
+  }
+
   useEffect(() => {
+    const imageSrc = likes ? 'heart(2).svg' : 'heart (1).svg'
+
     if (typeof window !== 'undefined') {
       // 브라우저 환경인 경우에만 localStorage 사용
       setUser(JSON.parse(localStorage.getItem('user')))
     }
-  }, [])
+  }, [likes])
 
   return (
     <Card>
@@ -111,7 +129,11 @@ const CardContainer = (props) => {
       <PoetContent>{posts.post_contents}</PoetContent>
       <ButtonWrap>
         <MiddleButtonWrap>
-          <MiddleButton src="heart (1).svg"></MiddleButton>
+          <MiddleButton
+            likes={likes}
+            src={likes ? 'heart(2).svg' : 'heart (1).svg'}
+            onClick={clickLikes}
+          ></MiddleButton>
           <Modal>
             <MiddleButton2 onClick={onCommentButton}></MiddleButton2>
             {isCommentOpen && (
@@ -134,7 +156,7 @@ const CardContainer = (props) => {
           <MiddlePickture
             src={users.find((user) => user.id === posts.id)?.profile_img}
           ></MiddlePickture>
-          <MiddleText>좋아요 000개</MiddleText>
+          <MiddleText>좋아요 {num}개</MiddleText>
         </NiceNumberWrap>
         <ReviewWrap>
           <Review>
